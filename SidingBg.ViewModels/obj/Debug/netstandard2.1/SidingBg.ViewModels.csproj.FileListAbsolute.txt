@@ -1,0 +1,7 @@
+C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\bin\Debug\netstandard2.1\SidingBg.ViewModels.deps.json
+C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\bin\Debug\netstandard2.1\SidingBg.ViewModels.dll
+C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\bin\Debug\netstandard2.1\SidingBg.ViewModels.pdb
+C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.1\SidingBg.ViewModels.AssemblyInfoInputs.cache
+C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.1\SidingBg.ViewModels.AssemblyInfo.cs
+C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.1\SidingBg.ViewModels.dll
+C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.1\SidingBg.ViewModels.pdb

@@ -1,0 +1,8 @@
+C:\Softuni React.js project\SidingBg\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.Core.deps.json
+C:\Softuni React.js project\SidingBg\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.Core.dll
+C:\Softuni React.js project\SidingBg\SidingBg.Core\obj\Debug\netstandard2.1\SidingBg.Core.AssemblyInfoInputs.cache
+C:\Softuni React.js project\SidingBg\SidingBg.Core\obj\Debug\netstandard2.1\SidingBg.Core.AssemblyInfo.cs
+C:\Softuni React.js project\SidingBg\SidingBg.Core\obj\Debug\netstandard2.1\SidingBg.Core.csprojAssemblyReference.cache
+C:\Softuni React.js project\SidingBg\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.Core.pdb
+C:\Softuni React.js project\SidingBg\SidingBg.Core\obj\Debug\netstandard2.1\SidingBg.Core.dll
+C:\Softuni React.js project\SidingBg\SidingBg.Core\obj\Debug\netstandard2.1\SidingBg.Core.pdb

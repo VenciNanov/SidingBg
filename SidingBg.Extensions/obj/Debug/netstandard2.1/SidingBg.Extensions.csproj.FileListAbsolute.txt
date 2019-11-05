@@ -1,0 +1,13 @@
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Extensions.deps.json
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Extensions.dll
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Extensions.pdb
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Entities.dll
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Entities.pdb
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\obj\Debug\netstandard2.1\SidingBg.Extensions.csprojAssemblyReference.cache
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\obj\Debug\netstandard2.1\SidingBg.Extensions.AssemblyInfoInputs.cache
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\obj\Debug\netstandard2.1\SidingBg.Extensions.AssemblyInfo.cs
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\obj\Debug\netstandard2.1\SidingBg.Extensions.csproj.CopyComplete
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\obj\Debug\netstandard2.1\SidingBg.Extensions.dll
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\obj\Debug\netstandard2.1\SidingBg.Extensions.pdb
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.ViewModels.dll
+C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.ViewModels.pdb
