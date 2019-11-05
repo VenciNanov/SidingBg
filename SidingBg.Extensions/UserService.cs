@@ -4,6 +4,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SidingBg.Entities;
@@ -14,7 +16,7 @@ namespace SidingBg.Extensions
 
     public interface IUserService
     {
-        User Authenticate(string username, string password);
+        Task<User> Authenticate(string username, string password);
         IEnumerable<User> GetAll();
     }
 
@@ -28,12 +30,17 @@ namespace SidingBg.Extensions
 
         private readonly AppSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings)
+        private UserManager<User> _userManager;
+        
+
+
+        public UserService(IOptions<AppSettings> appSettings,UserManager<User> userManager)
         {
             _appSettings = appSettings.Value;
+            _userManager = userManager;
         }
 
-        public User Authenticate(string username, string password)
+        public async Task<User> Authenticate(string username, string password)
         {
             var user = _users.SingleOrDefault(x => x.UserName == username && x.PasswordHash == password);
 

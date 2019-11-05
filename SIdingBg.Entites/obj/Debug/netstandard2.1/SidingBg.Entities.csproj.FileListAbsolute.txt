@@ -5,3 +5,4 @@ C:\Softuni React.js project\SidingBg\SIdingBg.Entites\obj\Debug\netstandard2.1\S
 C:\Softuni React.js project\SidingBg\SIdingBg.Entites\obj\Debug\netstandard2.1\SidingBg.Entities.AssemblyInfo.cs
 C:\Softuni React.js project\SidingBg\SIdingBg.Entites\obj\Debug\netstandard2.1\SidingBg.Entities.dll
 C:\Softuni React.js project\SidingBg\SIdingBg.Entites\obj\Debug\netstandard2.1\SidingBg.Entities.pdb
+C:\Softuni React.js project\SidingBg\SIdingBg.Entites\obj\Debug\netstandard2.1\SidingBg.Entities.csprojAssemblyReference.cache

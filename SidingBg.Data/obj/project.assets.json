@@ -2081,6 +2081,22 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "SidingBg.Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.0.0",
+          "Microsoft.EntityFrameworkCore": "3.0.0",
+          "Microsoft.EntityFrameworkCore.Proxies": "3.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SidingBg.Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SidingBg.Entities.dll": {}
+        }
       }
     }
   },
@@ -7050,6 +7066,11 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "SidingBg.Entities/1.0.0": {
+      "type": "project",
+      "path": "../SIdingBg.Entites/SidingBg.Entities.csproj",
+      "msbuildProject": "../SIdingBg.Entites/SidingBg.Entities.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7061,7 +7082,8 @@
       "Microsoft.EntityFrameworkCore.Proxies >= 3.0.0",
       "Microsoft.EntityFrameworkCore.Relational.Design >= 1.1.6",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.0.0",
-      "Microsoft.EntityFrameworkCore.SqlServer.Design >= 1.1.6"
+      "Microsoft.EntityFrameworkCore.SqlServer.Design >= 1.1.6",
+      "SidingBg.Entities >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -7093,7 +7115,11 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Softuni React.js project\\SidingBg\\SIdingBg.Entites\\SidingBg.Entities.csproj": {
+              "projectPath": "C:\\Softuni React.js project\\SidingBg\\SIdingBg.Entites\\SidingBg.Entities.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

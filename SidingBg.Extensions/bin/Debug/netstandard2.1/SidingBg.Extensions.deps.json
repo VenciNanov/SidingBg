@@ -1594,6 +1594,9 @@
         }
       },
       "SidingBg.ViewModels/1.0.0": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.6.0"
+        },
         "runtime": {
           "SidingBg.ViewModels.dll": {}
         }

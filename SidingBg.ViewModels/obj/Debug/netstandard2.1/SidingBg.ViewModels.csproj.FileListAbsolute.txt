@@ -5,3 +5,4 @@ C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.
 C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.1\SidingBg.ViewModels.AssemblyInfo.cs
 C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.1\SidingBg.ViewModels.dll
 C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.1\SidingBg.ViewModels.pdb
+C:\Softuni React.js project\SidingBg\SidingBg.ViewModels\obj\Debug\netstandard2.1\SidingBg.ViewModels.csprojAssemblyReference.cache

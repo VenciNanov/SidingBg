@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using SidingBg.Api.Configurations;
+using SidingBg.Data;
+using SidingBg.Entities;
 using SidingBg.Extensions;
 using SidingBg.ViewModels;
 
@@ -33,6 +39,27 @@ namespace SidingBg.Api
             services.AddCors();
             services.AddControllers();
 
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseLazyLoadingProxies();
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequiredLength = 1;
+                })
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            var mappingConfig = new MapperConfiguration(mc =>
+                mc.AddProfile(new MappingProfile())
+            );
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
             //services.Configure<AppSettings>(appSettingsSection);
