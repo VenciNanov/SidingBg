@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using SidingBg.Entities;
 using SidingBg.Extensions;
 using SidingBg.ViewModels.Auth;
 
@@ -17,10 +19,12 @@ namespace SidingBg.Api.Controllers
     public class AuthController : ControllerBase
     {
         private IUserService _userService;
+        private UserManager<User> _userManager;
 
-        public AuthController(IUserService userService)
+        public AuthController(IUserService userService,UserManager<User> userManager)
         {
             _userService = userService;
+            _userManager = userManager;
         }
 
         [AllowAnonymous]
@@ -40,6 +44,32 @@ namespace SidingBg.Api.Controllers
         {
             var users = _userService.GetAll();
             return Ok(users);
+        }
+
+        [AllowAnonymous]
+        [Route("/register")]
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
+        {
+            
+
+            if (ModelState.IsValid)
+            {
+                var user = new User()
+                {
+                    Email = model.Email,
+                    UserName = model.Email,
+                };
+
+                var result = await this._userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return Ok();
+                }
+            }
+
+            return BadRequest("Error");
         }
     }
 }
