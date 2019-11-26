@@ -36,6 +36,7 @@
           "Microsoft.Extensions.Logging.Debug": "3.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.0.0",
           "Newtonsoft.Json": "12.0.2",
+          "SidingBg.Core": "1.0.0",
           "SidingBg.Data": "1.0.0",
           "SidingBg.Extensions": "1.0.0",
           "SidingBg.ViewModels": "1.0.0",
@@ -2302,6 +2303,22 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
+        }
+      },
+      "SidingBg.Core/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "9.0.0",
+          "FluentValidation": "8.5.1",
+          "MediatR.Extensions.Autofac.DependencyInjection": "3.0.1",
+          "Microsoft.EntityFrameworkCore": "3.0.0",
+          "SidingBg.Data": "1.0.0",
+          "SidingBg.ViewModels": "1.0.0"
+        },
+        "runtime": {
+          "SidingBg.Core.dll": {}
+        },
+        "compile": {
+          "SidingBg.Core.dll": {}
         }
       },
       "SidingBg.Data/1.0.0": {
@@ -5284,6 +5301,11 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "SidingBg.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "SidingBg.Data/1.0.0": {
       "type": "project",

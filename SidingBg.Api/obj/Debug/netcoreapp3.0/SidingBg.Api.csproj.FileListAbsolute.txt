@@ -133,3 +133,5 @@ C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\Micros
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.Design.dll
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\SidingBg.Data.dll
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\SidingBg.Data.pdb
+C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\SidingBg.Core.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\SidingBg.Core.pdb

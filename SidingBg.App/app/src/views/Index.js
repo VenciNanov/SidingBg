@@ -25,6 +25,7 @@ import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
 import LandingPage from "./examples/LandingPage.js";
+import CreateRoutePage from "./examples/CreateRoutePage.js";
 
 function Index() {
   React.useEffect(() => {

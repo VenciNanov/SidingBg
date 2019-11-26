@@ -150,6 +150,102 @@ namespace SidingBg.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SidingBg.Entities.Routes.Content", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Header")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contents");
+                });
+
+            modelBuilder.Entity("SidingBg.Entities.Routes.Controller", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Controllers");
+                });
+
+            modelBuilder.Entity("SidingBg.Entities.Routes.Image", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ContentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentId");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("SidingBg.Entities.Routes.Page", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ContentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ControllerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentId")
+                        .IsUnique()
+                        .HasFilter("[ContentId] IS NOT NULL");
+
+                    b.HasIndex("ControllerId");
+
+                    b.ToTable("Pages");
+                });
+
+            modelBuilder.Entity("SidingBg.Entities.Routes.TextField", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ContentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentId");
+
+                    b.ToTable("TextFields");
+                });
+
             modelBuilder.Entity("SidingBg.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -267,6 +363,31 @@ namespace SidingBg.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SidingBg.Entities.Routes.Image", b =>
+                {
+                    b.HasOne("SidingBg.Entities.Routes.Content", "Content")
+                        .WithMany()
+                        .HasForeignKey("ContentId");
+                });
+
+            modelBuilder.Entity("SidingBg.Entities.Routes.Page", b =>
+                {
+                    b.HasOne("SidingBg.Entities.Routes.Content", "Content")
+                        .WithOne("Page")
+                        .HasForeignKey("SidingBg.Entities.Routes.Page", "ContentId");
+
+                    b.HasOne("SidingBg.Entities.Routes.Controller", "Controller")
+                        .WithMany("Pages")
+                        .HasForeignKey("ControllerId");
+                });
+
+            modelBuilder.Entity("SidingBg.Entities.Routes.TextField", b =>
+                {
+                    b.HasOne("SidingBg.Entities.Routes.Content", "Content")
+                        .WithMany()
+                        .HasForeignKey("ContentId");
                 });
 #pragma warning restore 612, 618
         }

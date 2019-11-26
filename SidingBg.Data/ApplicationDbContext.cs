@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SidingBg.Entities;
+using SidingBg.Entities.Routes;
 
 namespace SidingBg.Data
 {
@@ -11,6 +12,12 @@ namespace SidingBg.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
+
+        public virtual DbSet<Content> Contents{ get; set; }
+        public virtual DbSet<Controller> Controllers { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<TextField> TextFields { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SidingBg.Core\SidingBg.Core.csproj" />
     <ProjectReference Include="..\SidingBg.Data\SidingBg.Data.csproj" />
     <ProjectReference Include="..\SidingBg.Extensions\SidingBg.Extensions.csproj" />
     <ProjectReference Include="..\SidingBg.ViewModels\SidingBg.ViewModels.csproj" />

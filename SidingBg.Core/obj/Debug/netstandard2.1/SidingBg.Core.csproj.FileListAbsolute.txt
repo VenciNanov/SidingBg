@@ -6,3 +6,10 @@ C:\Softuni React.js project\SidingBg\SidingBg.Core\obj\Debug\netstandard2.1\Sidi
 C:\Softuni React.js project\SidingBg\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.Core.pdb
 C:\Softuni React.js project\SidingBg\SidingBg.Core\obj\Debug\netstandard2.1\SidingBg.Core.dll
 C:\Softuni React.js project\SidingBg\SidingBg.Core\obj\Debug\netstandard2.1\SidingBg.Core.pdb
+C:\Softuni React.js project\SidingBG\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.Data.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.Entities.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.ViewModels.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.Data.pdb
+C:\Softuni React.js project\SidingBG\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.ViewModels.pdb
+C:\Softuni React.js project\SidingBG\SidingBg.Core\bin\Debug\netstandard2.1\SidingBg.Entities.pdb
+C:\Softuni React.js project\SidingBG\SidingBg.Core\obj\Debug\netstandard2.1\SidingBg.Core.csproj.CopyComplete

@@ -58,14 +58,7 @@ function LandingPage() {
                       backgroundImage:
                         "url(" + require("assets/img/login.jpg") + ")"
                     }}
-                  >
-                    <p className="blockquote blockquote-info">
-                      "Over the span of the satellite record, Arctic sea ice has
-                      been declining significantly, while sea ice in the
-                      Antarctichas increased very slightly" <br></br>
-                      <br></br>
-                      <small>-NOAA</small>
-                    </p>
+                  >                    
                   </div>
                   <div
                     className="image-container"

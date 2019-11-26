@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Softuni React.js project\\SidingBg\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj": {}
+    "C:\\Softuni React.js project\\SidingBG\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj": {}
   },
   "projects": {
-    "C:\\Softuni React.js project\\SidingBg\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj": {
+    "C:\\Softuni React.js project\\SidingBG\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Softuni React.js project\\SidingBg\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj",
+        "projectUniqueName": "C:\\Softuni React.js project\\SidingBG\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj",
         "projectName": "SidingBg.ViewModels",
-        "projectPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj",
+        "projectPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj",
         "packagesPath": "C:\\Users\\tep98\\.nuget\\packages\\",
-        "outputPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.ViewModels\\obj\\",
+        "outputPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

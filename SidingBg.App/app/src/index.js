@@ -14,6 +14,8 @@ import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import RegisterPage from "views/examples/RegisterPage";
+import CreateRoutePage from "views/examples/CreateRoutePage";
+import CreatePage from "views/examples/CreatePageT1";
 
 
 ReactDOM.render(
@@ -36,6 +38,14 @@ ReactDOM.render(
          <Route
           path="/register-page"
           render={props => <RegisterPage {...props} />}
+        />
+        <Route
+          path="/cms/create-route"
+          render={props => <CreateRoutePage {...props} />}
+        />
+        <Route
+          path="/cms/create-page"
+          render={props => <CreatePage {...props} />}
         />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Redirect to="/index" />

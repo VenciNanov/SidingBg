@@ -7093,11 +7093,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Softuni React.js project\\SidingBg\\SidingBg.Data\\SidingBg.Data.csproj",
+      "projectUniqueName": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Data\\SidingBg.Data.csproj",
       "projectName": "SidingBg.Data",
-      "projectPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.Data\\SidingBg.Data.csproj",
+      "projectPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Data\\SidingBg.Data.csproj",
       "packagesPath": "C:\\Users\\tep98\\.nuget\\packages\\",
-      "outputPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.Data\\obj\\",
+      "outputPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -7116,8 +7116,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Softuni React.js project\\SidingBg\\SIdingBg.Entites\\SidingBg.Entities.csproj": {
-              "projectPath": "C:\\Softuni React.js project\\SidingBg\\SIdingBg.Entites\\SidingBg.Entities.csproj"
+            "C:\\Softuni React.js project\\SidingBG\\SIdingBg.Entites\\SidingBg.Entities.csproj": {
+              "projectPath": "C:\\Softuni React.js project\\SidingBG\\SIdingBg.Entites\\SidingBg.Entities.csproj"
             }
           }
         }

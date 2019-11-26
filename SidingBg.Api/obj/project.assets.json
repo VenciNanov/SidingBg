@@ -2805,6 +2805,24 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "SidingBg.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "AutoMapper": "9.0.0",
+          "FluentValidation": "8.5.1",
+          "MediatR.Extensions.Autofac.DependencyInjection": "3.0.1",
+          "Microsoft.EntityFrameworkCore": "3.0.0",
+          "SidingBg.Data": "1.0.0",
+          "SidingBg.ViewModels": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SidingBg.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SidingBg.Core.dll": {}
+        }
+      },
       "SidingBg.Data/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -8910,6 +8928,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "SidingBg.Core/1.0.0": {
+      "type": "project",
+      "path": "../SidingBg.Core/SidingBg.Core.csproj",
+      "msbuildProject": "../SidingBg.Core/SidingBg.Core.csproj"
+    },
     "SidingBg.Data/1.0.0": {
       "type": "project",
       "path": "../SidingBg.Data/SidingBg.Data.csproj",
@@ -8945,6 +8968,7 @@
       "Microsoft.Extensions.Logging.Debug >= 3.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.0.0",
       "Newtonsoft.Json >= 12.0.2",
+      "SidingBg.Core >= 1.0.0",
       "SidingBg.Data >= 1.0.0",
       "SidingBg.Extensions >= 1.0.0",
       "SidingBg.ViewModels >= 1.0.0",
@@ -8958,11 +8982,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Softuni React.js project\\SidingBg\\SidingBg.Api\\SidingBg.Api.csproj",
+      "projectUniqueName": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Api\\SidingBg.Api.csproj",
       "projectName": "SidingBg.Api",
-      "projectPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.Api\\SidingBg.Api.csproj",
+      "projectPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Api\\SidingBg.Api.csproj",
       "packagesPath": "C:\\Users\\tep98\\.nuget\\packages\\",
-      "outputPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.Api\\obj\\",
+      "outputPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8981,14 +9005,17 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Softuni React.js project\\SidingBg\\SidingBg.Data\\SidingBg.Data.csproj": {
-              "projectPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.Data\\SidingBg.Data.csproj"
+            "C:\\Softuni React.js project\\SidingBG\\SidingBg.Core\\SidingBg.Core.csproj": {
+              "projectPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Core\\SidingBg.Core.csproj"
             },
-            "C:\\Softuni React.js project\\SidingBg\\SidingBg.Extensions\\SidingBg.Extensions.csproj": {
-              "projectPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.Extensions\\SidingBg.Extensions.csproj"
+            "C:\\Softuni React.js project\\SidingBG\\SidingBg.Data\\SidingBg.Data.csproj": {
+              "projectPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Data\\SidingBg.Data.csproj"
             },
-            "C:\\Softuni React.js project\\SidingBg\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj": {
-              "projectPath": "C:\\Softuni React.js project\\SidingBg\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj"
+            "C:\\Softuni React.js project\\SidingBG\\SidingBg.Extensions\\SidingBg.Extensions.csproj": {
+              "projectPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Extensions\\SidingBg.Extensions.csproj"
+            },
+            "C:\\Softuni React.js project\\SidingBG\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj": {
+              "projectPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.ViewModels\\SidingBg.ViewModels.csproj"
             }
           }
         }

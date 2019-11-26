@@ -17,6 +17,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SidingBg.Api.Configurations;
+using SidingBg.Core;
+using SidingBg.Core.Contracts;
 using SidingBg.Data;
 using SidingBg.Entities;
 using SidingBg.Extensions;
@@ -86,7 +88,8 @@ namespace SidingBg.Api
                 });
 
             services.AddScoped<IUserService, UserService>();
-            
+            services.AddScoped<IPageService, PageService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
