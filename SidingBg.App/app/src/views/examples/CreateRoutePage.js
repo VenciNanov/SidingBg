@@ -36,7 +36,8 @@ export default class CreateRoutePage extends React.Component {
     body: JSON.stringify({
      "controller": event.target.controller.value,
      "page":event.target.page.value,
-     "pageTitle":event.target.pageTitle.value
+     "pageTitle":event.target.pageTitle.value,
+     "dropDownMenu":event.target.dropDownMenu.value
     })
    });
    this.props.history.push('/');

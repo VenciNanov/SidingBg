@@ -28,5 +28,13 @@ namespace SidingBg.Api.Controllers
 
             return Ok(model);
         }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public IActionResult Index()
+        {
+            var response = _pageService.GetAll();
+            return Ok(response);
+        }
     }
 }

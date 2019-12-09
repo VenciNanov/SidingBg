@@ -16,6 +16,7 @@ import ProfilePage from "views/examples/ProfilePage.js";
 import RegisterPage from "views/examples/RegisterPage";
 import CreateRoutePage from "views/examples/CreateRoutePage";
 import CreatePage from "views/examples/CreatePageT1";
+import CMSIndex from "views/cms/Index";
 
 
 ReactDOM.render(
@@ -46,6 +47,10 @@ ReactDOM.render(
         <Route
           path="/cms/create-page"
           render={props => <CreatePage {...props} />}
+        />
+        <Route
+          path="/cms/index"
+          render={props => <CMSIndex {...props} />}
         />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Redirect to="/index" />

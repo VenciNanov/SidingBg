@@ -9,5 +9,6 @@ namespace SidingBg.Core.Contracts
     public interface IPageService
     {
         CreateRouteViewModel CreateRoute(CreateRouteViewModel vm);
+        CMSIndexViewModel GetAll();
     }
 }
