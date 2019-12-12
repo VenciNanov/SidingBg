@@ -15,7 +15,7 @@ import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import RegisterPage from "views/examples/RegisterPage";
 import CreateRoutePage from "views/examples/CreateRoutePage";
-import CreatePage from "views/examples/CreatePageT1";
+import CreatePage from "views/cms/CreatePage";
 import CMSIndex from "views/cms/Index";
 
 
@@ -45,7 +45,7 @@ ReactDOM.render(
           render={props => <CreateRoutePage {...props} />}
         />
         <Route
-          path="/cms/create-page"
+          path="/cms/create-page/:id"
           render={props => <CreatePage {...props} />}
         />
         <Route

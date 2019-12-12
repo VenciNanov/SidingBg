@@ -12,7 +12,7 @@ namespace SidingBg.Core
     public class PageService : IPageService
     {
         private ApplicationDbContext _context;
-        
+
 
         public PageService(ApplicationDbContext context)
         {
@@ -48,13 +48,68 @@ namespace SidingBg.Core
 
         public CMSIndexViewModel GetAll()
         {
-            var pages = _context.Pages.Select(p=> new PageListViewModel(){Controller = p.Controller.Name,Page = p.Name,PageId = p.Id});
+            var pages = _context.Pages.Select(p => new PageListViewModel()
+            {
+                Controller = p.Controller.Name,
+                Page = p.Name,
+                PageId = p.Id
+            });
 
-            var model = new CMSIndexViewModel();
-
-            model.Pages = pages;
+            var model = new CMSIndexViewModel
+            {
+                Pages = pages
+            };
 
             return model;
+        }
+
+        public AddEditPageViewMode Get(string id)
+        {
+            var page = _context.Pages.Find(id);
+
+            var model = new AddEditPageViewMode
+            {
+                PageId = page.Id,
+                PageName = page.Name,
+                //Contents = page.Content.TextFields.Select(c=>c.Text)
+            };
+
+            return model;
+        }
+
+        public AddEditPageViewMode CreatePage(AddEditPageViewMode model)
+        {
+            var page = _context.Pages.Find(model.PageId);
+
+            if (page == null)
+            {
+                return null;
+            }
+
+            if (page.Content==null)
+            {
+                var content = new Content(){Header = page.Name,Page=page};
+                _context.Contents.Add(content);
+                _context.SaveChanges();
+            }
+
+            var contentId = page.ContentId;
+
+            foreach (var content in model.Contents)
+            {
+                var entity = new TextField
+                {
+                    ContentId = contentId,
+                    Text = content
+                };
+
+                _context.TextFields.Add(entity);
+            }
+
+            _context.SaveChanges();
+
+            return model;
+
         }
     }
 }

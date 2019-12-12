@@ -97,9 +97,6 @@ function CMSNavbar() {
                   Начало Админ Панел
                 </NavLink>
               </NavItem>
-           
-           
-             
             </Nav>
           </Collapse>
         </Container>

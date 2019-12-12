@@ -36,5 +36,27 @@ namespace SidingBg.Api.Controllers
             var response = _pageService.GetAll();
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("AddEditPage")]
+        public IActionResult GetById(string id)
+        {
+            var response = _pageService.Get(id);
+
+            return Ok(response);
+        }
+        [HttpPost]
+        [Route("AddEditPage")]
+        public IActionResult AddEditPage(AddEditPageViewMode model)
+        {
+            var response = _pageService.CreatePage(model);
+
+            if (response==null)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }

@@ -10,5 +10,7 @@ namespace SidingBg.Core.Contracts
     {
         CreateRouteViewModel CreateRoute(CreateRouteViewModel vm);
         CMSIndexViewModel GetAll();
+        AddEditPageViewMode Get(string id);
+        AddEditPageViewMode CreatePage(AddEditPageViewMode model);
     }
 }
