@@ -11,5 +11,7 @@ namespace SidingBg.ViewModels.CMS
         public string PageName { get; set; }
         public int Type { get; set; }
         public string[] Contents { get; set; }
+        //Base64 images
+        public string[] Images{ get; set; }
     }
 }

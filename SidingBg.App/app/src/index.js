@@ -18,6 +18,8 @@ import CreateRoutePage from "views/examples/CreateRoutePage";
 import CreatePage from "views/cms/CreatePage";
 import CMSIndex from "views/cms/Index";
 
+const api = "https://localhost:44353/api/"
+
 
 ReactDOM.render(
   <BrowserRouter>

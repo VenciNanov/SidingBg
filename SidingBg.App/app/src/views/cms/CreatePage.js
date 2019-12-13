@@ -35,28 +35,51 @@ export default class CreatePage extends React.Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            id:"",
+            id: "",
             name: "test",
             texts: [],
-            pageName: ""
+            files: [],
+            pageName: "",
+            textsValues: [],
+        };
+    }
+
+    getBase64(file, cb) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            cb(reader.result)
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
         };
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.id)
+        console.log(document.querySelector("#ta1"))
         fetch(api + "templates/AddEditPage?id=" + this.props.match.params.id, {
             method: "GET",
             headers: { 'Content-type': 'application/json' },
 
         }).then((res) => res.json())
-            .then((data) => this.setState({ pageName: data.pageName, id: data.pageId }))
+            .then((data) => {
+                this.setState({
+                    texts: data.contents,
+                    pageName: data.pageName,
+                    id: data.pageId,
+                    files: data.images
+                })
+                document.querySelector('#ta1').value=data.contents[1]
+                document.querySelector('#ta2').value=data.contents[3]
+            })
+
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
 
-        console.log(this.state.texts)
+        console.log(this.state);
 
         fetch(api + 'templates/addEditPage', {
             method: 'post',
@@ -64,6 +87,7 @@ export default class CreatePage extends React.Component {
             body: JSON.stringify({
                 "pageId": this.state.id,
                 "contents": this.state.texts,
+                "images": this.state.files
             })
         });
         // this.props.history.push('/');
@@ -76,21 +100,27 @@ export default class CreatePage extends React.Component {
                 <div className=".landing-page">
                     <LandingPageHeader />
                     <div className="section section-about-us">
+                        <div className="text-center">
+                            Page name
                         <h1>{this.state.pageName}</h1>
+                        </div>
                         <form onSubmit={this.handleSubmit}>
                             <Container>
                                 <Row className="text-center">
                                     <Col>
                                         <Label>Header</Label>
                                         <Input type="Input"
-                                            onBlur={(e) => this.state.texts[0] = e.target.value}></Input>
+                                            onChange={(e) => this.state.texts[0] = e.target.value || ""}
+                                            defaultValue={this.state.texts[0] || ''}></Input>
                                     </Col>
                                 </Row>
                                 <Row className="text-center">
                                     <Col>
                                         <Label>Title</Label>
                                         <Input
-                                            onBlur={(e) => this.state.texts[1] = e.target.value}
+                                            id="ta1"
+                                            onChange={(e) => this.state.texts[1] = e.target.value || ""}
+                                            defaultValue={this.state.texts[1]}
                                             type="textarea"></Input>
                                     </Col>
                                 </Row>
@@ -98,29 +128,23 @@ export default class CreatePage extends React.Component {
                                     <Col>
                                         <Label>Paragraph title</Label>
                                         <Input
-                                            onBlur={(e) => this.state.texts[2] = e.target.value}
+                                            onChange={(e) => this.state.texts[2] = e.target.value || ""}
+                                            defaultValue={this.state.texts[2] || ''}
                                             type="Input"></Input>
                                     </Col>
                                 </Row>
                                 <FormGroup>
                                     <Row className="text-center">
                                         <Col>
-                                            <Label>Paragraphq</Label>
+                                            <Label>Paragraph</Label>
                                             <Input
-                                                onBlur={(e) => this.state.texts[3] = e.target.value}
+                                                id="ta2"
+                                                onChange={(e) => this.state.texts[3] = e.target.value || ""}
+                                                defaultValue={this.state.texts[3] || ''}
                                                 type="textarea" ></Input>
                                         </Col>
                                     </Row>
                                 </FormGroup>
-                                <Button
-                                    block
-                                    className="btn-round"
-                                    color="info"
-                                    size="lg"
-                                    type="submit"
-                                >
-                                    Get Started
-                    </Button>
                             </Container>
                             <div className="text-center">
                                 <h1>Images</h1>
@@ -128,11 +152,15 @@ export default class CreatePage extends React.Component {
                             <Container>
                                 <CardDeck>
                                     <Card>
+                                        <CardImg top width="100%" src={this.state.files[0]} alt="Image one" />
                                         <CardBody>
                                             <CardTitle>Image 1</CardTitle>
                                             <FormGroup>
                                                 <Label for="exampleFile">File</Label>
-                                                <Input type="file" name="imageOne" id="ImageOne" />
+                                                <Input type="file" name="imageOne" id="ImageOne"
+                                                    onChange={(e) => this.getBase64(e.target.files[0], (result) => {
+                                                        this.state.files[0] = result;
+                                                    })} />
                                                 <FormText color="muted">
                                                     This is some placeholder block-level help text for the above input.
                                                     It's a bit lighter and easily wraps to a new line.
@@ -173,6 +201,15 @@ export default class CreatePage extends React.Component {
                                     </Card>
                                 </CardDeck>
                             </Container>
+                            <Button
+                                block
+                                className="btn-round"
+                                color="info"
+                                size="lg"
+                                type="submit"
+                            >
+                                Save
+                                </Button>
                         </form>
                     </div>
                 </div>

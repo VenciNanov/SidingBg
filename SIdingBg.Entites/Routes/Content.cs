@@ -10,12 +10,14 @@ namespace SidingBg.Entities.Routes
         public Content()
         {
             Id = Guid.NewGuid().ToString();
-            TextFields=new List<TextField>();
+            TextFields=new HashSet<TextField>();
+            Images = new HashSet<Image>();
         }
         public string Id { get; set; }
         public string Header { get; set; }
         public virtual Page Page{ get; set; }
         public virtual ICollection<TextField> TextFields { get; set; }
+        public virtual ICollection<Image>  Images{ get; set; }
         
     }
 }

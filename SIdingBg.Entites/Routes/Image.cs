@@ -12,10 +12,11 @@ namespace SidingBg.Entities.Routes
         }
         public string Id { get; set; }
         public string ContentType { get; set; }
-        public string Title { get; set; }
+        public string Name { get; set; }
+        public string Base64 { get; set; }
         public int Position { get; set; }
         public string ContentId { get; set; }
-        public virtual Content Content{ get; set; }
+        public virtual Content Content { get; set; }
 
     }
 }
