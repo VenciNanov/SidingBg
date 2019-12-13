@@ -12,6 +12,8 @@ namespace SidingBg.Entities.Routes
             Id = Guid.NewGuid().ToString();
         }
         public string Id { get; set; }
+        //searched by
+        public string Alias { get; set; }
         public string Name { get; set; }
         public string ControllerId { get; set; }
         public virtual Controller Controller { get; set; }

@@ -54,7 +54,7 @@ function CMSNavbar() {
           
           <div className="navbar-translate">
             <NavbarBrand
-              href="/index"             
+              href="/cms/index"             
               id="navbar-brand"
             >
             SidingBg

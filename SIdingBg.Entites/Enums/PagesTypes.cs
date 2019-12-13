@@ -6,6 +6,7 @@ namespace SidingBg.Entities.Enums
 {
     public enum PageType
     {
+        Home=0,
         Normal=1,
         Tabs=2,
         Carousel=3,

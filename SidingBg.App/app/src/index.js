@@ -17,6 +17,7 @@ import RegisterPage from "views/examples/RegisterPage";
 import CreateRoutePage from "views/examples/CreateRoutePage";
 import CreatePage from "views/cms/CreatePage";
 import CMSIndex from "views/cms/Index";
+import Page from "views/PageViews/Page";
 
 const api = "https://localhost:44353/api/"
 
@@ -26,6 +27,8 @@ ReactDOM.render(
     <Switch>
       <Switch>
         <Route path="/index" render={props => <Index {...props} />} />
+        <Route path="/page/:alias" render={props => <Page {...props} />} />
+
         <Route
           path="/nucleo-icons"
           render={props => <NucleoIcons {...props} />}

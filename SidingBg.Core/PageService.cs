@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using SidingBg.Core.Contracts;
 using SidingBg.Data;
+using SidingBg.Entities.Enums;
 using SidingBg.Entities.Routes;
 using SidingBg.ViewModels.CMS;
 
@@ -39,7 +40,7 @@ namespace SidingBg.Core
             controller.Pages.Add(page);
             _context.Controllers.Add(controller);
 
-
+            page.Alias = $"{page.Controller.Name}/{page.Name}";
 
             _context.SaveChanges();
 
@@ -76,6 +77,29 @@ namespace SidingBg.Core
             };
 
             return model;
+        }
+
+        public PageType GetType(string alias)
+        {
+            var page = _context.Pages.FirstOrDefault(p => p.Alias == alias);
+
+            return page.Type;
+        }
+
+        public AddEditPageViewMode GetByAlias(string alias)
+        {
+            var page = _context.Pages.FirstOrDefault(p=>p.Alias==alias);
+
+            var model = new AddEditPageViewMode
+            {
+                PageId = page.Id,
+                PageName = page.Name,
+                Contents = page.Content.TextFields.Select(c => c.Text).ToArray(),
+                Images = page.Content.Images.Select(i => i.Base64).ToArray()
+            };
+
+            return model;
+
         }
 
         public AddEditPageViewMode CreatePage(AddEditPageViewMode model)
@@ -165,5 +189,6 @@ namespace SidingBg.Core
                 }
             }
         }
+
     }
 }
