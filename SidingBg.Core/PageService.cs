@@ -7,6 +7,7 @@ using SidingBg.Data;
 using SidingBg.Entities.Enums;
 using SidingBg.Entities.Routes;
 using SidingBg.ViewModels.CMS;
+using SidingBg.ViewModels.FrontEnd;
 
 namespace SidingBg.Core
 {
@@ -34,14 +35,23 @@ namespace SidingBg.Core
             };
 
             _context.Pages.AddAsync(page);
-            var controller = new Controller()
-            {
-                Name = vm.Controller
-            };
-            controller.Pages.Add(page);
-            _context.Controllers.Add(controller);
 
-            page.Alias = $"{page.Controller.Name}/{page.Name}";
+            var controller = _context.Controllers.FirstOrDefault(c => c.Name.ToLower() == vm.Controller);
+            if (controller== null)
+            {
+                var controllerEntity = new Controller()
+                {
+                    Name = vm.Controller
+                };
+                controllerEntity.Pages.Add(page);
+                _context.Controllers.Add(controllerEntity);
+            }
+            else
+            {
+                controller.Pages.Add(page);
+            }
+
+            page.Alias = $"{page.Name}";
 
             _context.SaveChanges();
 
@@ -74,7 +84,7 @@ namespace SidingBg.Core
                 PageId = page.Id,
                 PageName = page.Name,
                 Contents = page.Content.TextFields.Select(c => c.Text).ToArray(),
-                Images =  page.Content.Images.Select(i=>i.Base64).ToArray()
+                Images = page.Content.Images.Select(i => i.Base64).ToArray()
             };
 
             return model;
@@ -87,9 +97,32 @@ namespace SidingBg.Core
             return page.Type;
         }
 
+        public MenuItemsViewModel GetMenuItems()
+        {
+            var vm = new MenuItemsViewModel();
+            var controllers = _context.Controllers.ToList();
+            foreach (var controller in controllers)
+            {
+                var ctrlModel = new ControllerViewModel
+                {
+                    Name = controller.Name,
+                    Pages = controller.Pages.Select(p => new PageViewModel
+                    {
+                        Alias = p.Alias,
+                        HeaderName = p.Content.Header,
+                        Name = p.Name,
+                        Type = (int)p.Type
+                    }).ToList()
+                };
+                vm.Controllers.Add(ctrlModel);
+            }
+
+            return vm;
+        }
+
         public AddEditPageViewMode GetByAlias(string alias)
         {
-            var page = _context.Pages.FirstOrDefault(p=>p.Alias.ToLower()==alias.ToLower());
+            var page = _context.Pages.FirstOrDefault(p => p.Alias.ToLower() == alias.ToLower());
 
             var model = new AddEditPageViewMode
             {
@@ -116,7 +149,8 @@ namespace SidingBg.Core
             {
                 var content = new Content()
                 {
-                    Header = page.Name, Page = page
+                    Header = page.Name,
+                    Page = page
                 };
                 _context.Contents.Add(content);
                 _context.SaveChanges();
@@ -133,9 +167,9 @@ namespace SidingBg.Core
             {
                 EditTextFields(model, page);
             }
-            
 
-            if (model.Images.Length>0)
+
+            if (model.Images.Length > 0)
             {
                 CreateImage(model, page);
             }
@@ -173,7 +207,7 @@ namespace SidingBg.Core
             for (int i = 0; i < model.Images.Length; i++)
             {
                 var image = model.Images[i];
-                if (page.Content.Images.Count >= i&&page.Content.Images.Count>0)
+                if (page.Content.Images.Count >= i && page.Content.Images.Count > 0)
                 {
                     page.Content.Images.ToArray()[i].Base64 = image;
                 }

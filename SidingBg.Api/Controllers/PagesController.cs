@@ -33,5 +33,13 @@ namespace SidingBg.Api.Controllers
             return Ok(new { type = response });
         }
 
+        [HttpGet]
+        [Route("GetMenuItems")]
+        public IActionResult GetMenuItems()
+        {
+            var response = _pageService.GetMenuItems();
+            return Ok(response);
+        }
+
     }
 }

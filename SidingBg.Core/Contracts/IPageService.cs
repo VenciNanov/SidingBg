@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SidingBg.Entities.Enums;
 using SidingBg.ViewModels.CMS;
+using SidingBg.ViewModels.FrontEnd;
 
 namespace SidingBg.Core.Contracts
 {
@@ -15,6 +16,8 @@ namespace SidingBg.Core.Contracts
         AddEditPageViewMode CreatePage(AddEditPageViewMode model);
         AddEditPageViewMode GetByAlias(string alias);
         PageType GetType(string alias);
+
+        MenuItemsViewModel GetMenuItems();
 
     }
 }

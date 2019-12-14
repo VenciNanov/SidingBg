@@ -15,57 +15,65 @@ import {
   Container,
   UncontrolledTooltip
 } from "reactstrap";
-// React.useEffect(() => {
-//   const 
-// });
+
+
+const api = "https://localhost:44353/api/Pages/"
+
 export default class BasicTemplate extends React.Component {
-  
+
   updateNavbarColor = () => {
     if (
       document.documentElement.scrollTop > 399 ||
       document.body.scrollTop > 399
     ) {
-      this.state.setNavbarColor="";
+      this.state.setNavbarColor = "";
     } else if (
       document.documentElement.scrollTop < 400 ||
       document.body.scrollTop < 400
     ) {
-      this.state.setNavbarColor="navbar-transparent";
+      this.state.setNavbarColor = "navbar-transparent";
     }
   };
-  
+
   cleanup() {
     window.removeEventListener("scroll", this.updateNavbarColor);
   };
-  
-    constructor(props){
-      super(props)
-      this.state={
-        navbarColor:'navbar-transparent',
-        setNavbarColor:'navbar-transparent',
-        collapseOpen:false,
-        setCollapseOpen:false
-      }
-      window.addEventListener("scroll",this.updateNavbarColor);
+
+  getMenuItems
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      navbarColor: 'navbar-transparent',
+      setNavbarColor: 'navbar-transparent',
+      collapseOpen: false,
+      setCollapseOpen: false,
+      controllers: []
     }
+    window.addEventListener("scroll", this.updateNavbarColor);
+  }
+
+  componentDidMount() {
+    fetch(api + 'GetMenuItems').then((res) => res.json()).then((data) => this.setState({ controllers: data.controllers }))
+  }
 
   render() {
-    
-    
+    const { controllers } = this.state
+
     return (
       <>
-        { this.state.collapseOpen ? (
+        {this.state.collapseOpen ? (
           <div
             id="bodyClick"
             onClick={() => {
               document.documentElement.classList.toggle("nav-open");
-              this.state.setCollapseOpen=false;
+              this.state.setCollapseOpen = false;
             }}
           />
         ) : null}
-        <Navbar className={"fixed-top " +  this.state.navbarColor} color="info" expand="lg">
+        <Navbar className={"fixed-top " + this.state.navbarColor} color="info" expand="lg">
           <Container>
-  
+
             <div className="navbar-translate">
               <NavbarBrand
                 href="/index"
@@ -80,7 +88,7 @@ export default class BasicTemplate extends React.Component {
                 className="navbar-toggler navbar-toggler"
                 onClick={() => {
                   document.documentElement.classList.toggle("nav-open");
-                  this.state.setCollapseOpen=!this.state.collapseOpen;
+                  this.state.setCollapseOpen = !this.state.collapseOpen;
                 }}
                 aria-expanded={this.state.collapseOpen}
                 type="button"
@@ -96,6 +104,42 @@ export default class BasicTemplate extends React.Component {
               navbar
             >
               <Nav navbar>
+                {controllers.map((controller, i) => {
+                  if (controller.pages.length > 1) {
+                    return <UncontrolledDropdown className="button-dropdown">
+                      <DropdownToggle
+                        caret
+                        data-toggle="dropdown"
+                        href="#pablo"
+                        id="navbarDropdown"
+                        tag="a"
+                        onClick={e => e.preventDefault()}
+                      >
+                        {controller.name}
+                      </DropdownToggle>
+                      <DropdownMenu aria-labelledby="navbarDropdown">
+                        {
+                          controller.pages.map((page) => {
+                            let href = '/page/' + page.alias
+                           return <DropdownItem href="#pablo">
+                              {page.pageName}
+                            </DropdownItem>
+                          })
+                        }
+                       
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  }
+
+                  let url = '/page/' + controller.pages[0].alias
+                  return <NavItem>
+                    <NavLink to={url} tag={Link} key={i}>
+                      {controller.pages[0].headerName}
+                    </NavLink>
+                  </NavItem>
+                })
+
+                }
                 <NavItem>
                   <NavLink to="/index" tag={Link}>
                     Начало
@@ -135,7 +179,7 @@ export default class BasicTemplate extends React.Component {
                 </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-  
+
               </Nav>
             </Collapse>
           </Container>
