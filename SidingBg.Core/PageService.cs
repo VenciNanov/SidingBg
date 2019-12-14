@@ -29,7 +29,8 @@ namespace SidingBg.Core
             var page = new Page()
             {
                 Name = vm.Page,
-                Content = content
+                Content = content,
+                Type = (PageType)vm.Type
             };
 
             _context.Pages.AddAsync(page);
@@ -88,7 +89,7 @@ namespace SidingBg.Core
 
         public AddEditPageViewMode GetByAlias(string alias)
         {
-            var page = _context.Pages.FirstOrDefault(p=>p.Alias==alias);
+            var page = _context.Pages.FirstOrDefault(p=>p.Alias.ToLower()==alias.ToLower());
 
             var model = new AddEditPageViewMode
             {

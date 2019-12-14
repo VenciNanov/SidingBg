@@ -60,7 +60,6 @@ export default class CreatePage extends React.Component {
         fetch(api + "templates/AddEditPage?id=" + this.props.match.params.id, {
             method: "GET",
             headers: { 'Content-type': 'application/json' },
-
         }).then((res) => res.json())
             .then((data) => {
                 this.setState({
@@ -72,7 +71,6 @@ export default class CreatePage extends React.Component {
                 document.querySelector('#ta1').value=data.contents[1]
                 document.querySelector('#ta2').value=data.contents[3]
             })
-
     }
 
 

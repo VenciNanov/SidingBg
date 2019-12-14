@@ -30,7 +30,7 @@ namespace SidingBg.Api.Controllers
         public IActionResult GetPageInfo(string alias)
         {
             var response = _pageService.GetType(alias);
-            return Ok(response);
+            return Ok(new { type = response });
         }
 
     }

@@ -17,6 +17,7 @@ import IndexNavbar from "components/Navbars/IndexNavbar";
 import LandingPageHeader from "components/Headers/LandingPageHeader";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 import BasicTemplate from "views/PageViews/BasicTemplate";
+import { stat } from "fs";
 
 
 const api = "https://localhost:44353/api/pages/"
@@ -27,6 +28,7 @@ export default class Page extends React.Component {
         this.state = {
             alias: '',
             type: '',
+            
         }
     }
 
@@ -35,18 +37,22 @@ export default class Page extends React.Component {
             method: 'GET'
         }).then((res) => res.json())
             .then((data) => {
-                this.setState({ type: data.type })
+                
+                this.setState({ pageComponent:this.returnPageTemplateComponent(data.type,this.props.match.params.alias)});
+               
             })
     }
 
-    returnPageTemplateComponent(type) {
+    returnPageTemplateComponent(type,alias) {
         switch (type) {
             case 1:
-                return <BasicTemplate props={this.state.alias}></BasicTemplate>
+                return <BasicTemplate alias={alias}></BasicTemplate>
             case 2:
                 return ""
             case 3:
                 return ""
+            default:
+                console.log("boom")
         }
     }
 
@@ -56,9 +62,9 @@ export default class Page extends React.Component {
                 <IndexNavbar />
                 <div className="wrapper">
                     <LandingPageHeader />
-                    <div className="section section-about-us">
+                    <div className="">
                         <Container>
-                            {this.returnPageTemplateComponent()}
+                            {this.state.pageComponent||''}
                         </Container>
                     </div>
                     <DefaultFooter />

@@ -9,6 +9,7 @@ namespace SidingBg.ViewModels.CMS
         public string Controller { get; set; }
         public string Page { get; set; }
         public string PageTitle { get; set; }
+        public int Type { get; set; }
 
     }
 }

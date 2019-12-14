@@ -18,7 +18,7 @@ import LandingPageHeader from "components/Headers/LandingPageHeader";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 import { switchCase } from "@babel/types";
 
-const api = "https://localhost:44353/api/"
+const api = "https://localhost:44353/api/Pages/"
 
 export default class BasicTemplate extends React.Component {
     constructor(props) {
@@ -26,28 +26,31 @@ export default class BasicTemplate extends React.Component {
         this.state = {
             alias: '',
             type: '',
+            texts:[],
+            files:[]
         }
     }
 
     componentDidMount() {
-        fetch(api + 'GetPage?alias=' + this.props.match.params.alias, {
+        console.log(this.props.alias)
+        fetch(api + 'GetPage?alias=' + this.props.alias, {
             method: 'GET'
         }).then((res) => res.json())
             .then((data) => {
-
+                this.setState({texts:data.contents,files:data.images})
             })
     }
 
 
     render() {
         return (
-            <div className="section section-about-us">
+            <div className="">
                 <Container>
                     <Row>
                         <Col className="ml-auto mr-auto text-center" md="8">
-                            <h2 className="title">{this.state.texts[0]}</h2>
+                            <h2 className="title">{this.state.texts[0]||''}</h2>
                             <h5 className="description">
-                                {this.state.texts[1]}
+                                {this.state.texts[1]||''}
                             </h5>
                         </Col>
                     </Row>
@@ -59,7 +62,7 @@ export default class BasicTemplate extends React.Component {
                                     className="image-container image-left"
                                     style={{
                                         backgroundImage:
-                                            "url(" + require("assets/img/login.jpg") + ")"
+                                            "url(" +this.state.files[0] || ''+ ")"
                                     }}
                                 >
                                 </div>
@@ -67,7 +70,7 @@ export default class BasicTemplate extends React.Component {
                                     className="image-container"
                                     style={{
                                         backgroundImage:
-                                            "url(" + require("assets/img/bg3.jpg") + ")"
+                                            "url(" + this.state.files[1] || '' + ")"
                                     }}
                                 ></div>
                             </Col>
@@ -76,13 +79,13 @@ export default class BasicTemplate extends React.Component {
                                     className="image-container image-right"
                                     style={{
                                         backgroundImage:
-                                            "url(" + require("assets/img/bg1.jpg") + ")"
+                                            "url(" +this.state.files[2] || '' + ")"
                                     }}
                                 ></div>
                                 <h3>
-                                    {this.state.texts[2]}
+                                    {this.state.texts[2]||''}
                                 </h3>
-                                {this.state.texts[3]}
+                                {this.state.texts[3]||''}
                             </Col>
                         </Row>
                     </div>
