@@ -12,6 +12,7 @@ namespace SidingBg.ViewModels.CMS
         public int Type { get; set; }
         public string[] Contents { get; set; }
         //Base64 images
-        public string[] Images{ get; set; }
+        public string[] Images { get; set; }
+        public AddEditTab[] Tabs { get; set; }
     }
 }

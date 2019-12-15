@@ -27,6 +27,7 @@ import NavBar from "components/Navbars/CMSNavbar";
 import LandingPageHeader from "components/Headers/LandingPageHeader";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
 import DefaultFooter from "components/Footers/DefaultFooter";
+import CreateTabs from 'views/cms/CreatePage.Tabs';
 
 const api = "https://localhost:44353/api/"
 
@@ -66,7 +67,8 @@ export default class CreatePage extends React.Component {
                     texts: data.contents,
                     pageName: data.pageName,
                     id: data.pageId,
-                    files: data.images
+                    files: data.images,
+                    type:data.type
                 })
                 document.querySelector('#ta1').value = data.contents[1] || '';
                 document.querySelector('#ta2').value = data.contents[3] || '';
@@ -205,8 +207,8 @@ export default class CreatePage extends React.Component {
                                         </CardBody>
                                     </Card>
                                 </CardDeck>
-                            </Container>
-                            <Button
+
+                                <Button
                                 block
                                 className="btn-round"
                                 color="info"
@@ -215,6 +217,10 @@ export default class CreatePage extends React.Component {
                             >
                                 Save
                                 </Button>
+                            </Container>
+                            {/* {this.state.type==1 ? <CreateTabs></CreateTabs>:  ''} */}
+                            <CreateTabs></CreateTabs>
+                            
                         </form>
                     </div>
                 </div>

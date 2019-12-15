@@ -20,6 +20,7 @@ namespace SidingBg.Core
         {
             _context = context;
         }
+
         public CreateRouteViewModel CreateRoute(CreateRouteViewModel vm)
         {
             var content = new Content()
@@ -31,13 +32,13 @@ namespace SidingBg.Core
             {
                 Name = vm.Page,
                 Content = content,
-                Type = (PageType)vm.Type
+                Type = (PageType) vm.Type
             };
 
             _context.Pages.AddAsync(page);
 
             var controller = _context.Controllers.FirstOrDefault(c => c.Name.ToLower() == vm.Controller);
-            if (controller== null)
+            if (controller == null)
             {
                 var controllerEntity = new Controller()
                 {
@@ -83,8 +84,11 @@ namespace SidingBg.Core
             {
                 PageId = page.Id,
                 PageName = page.Name,
-                Contents = page.Content.TextFields.Select(c => c.Text).ToArray(),
-                Images = page.Content.Images.Select(i => i.Base64).ToArray()
+                Contents = page.Content.TextFields.Select(c => c.Text)
+                    .ToArray(),
+                Images = page.Content.Images.Select(i => i.Base64)
+                    .ToArray(),
+                Type = (int)page.Type
             };
 
             return model;
@@ -107,12 +111,13 @@ namespace SidingBg.Core
                 {
                     Name = controller.Name,
                     Pages = controller.Pages.Select(p => new PageViewModel
-                    {
-                        Alias = p.Alias,
-                        HeaderName = p.Content.Header,
-                        Name = p.Name,
-                        Type = (int)p.Type
-                    }).ToList()
+                        {
+                            Alias = p.Alias,
+                            HeaderName = p.Content.Header,
+                            Name = p.Name,
+                            Type = (int) p.Type
+                        })
+                        .ToList()
                 };
                 vm.Controllers.Add(ctrlModel);
             }
@@ -128,8 +133,10 @@ namespace SidingBg.Core
             {
                 PageId = page.Id,
                 PageName = page.Name,
-                Contents = page.Content.TextFields.Select(c => c.Text).ToArray(),
-                Images = page.Content.Images.Select(i => i.Base64).ToArray()
+                Contents = page.Content.TextFields.Select(c => c.Text)
+                    .ToArray(),
+                Images = page.Content.Images.Select(i => i.Base64)
+                    .ToArray()
             };
 
             return model;
@@ -147,31 +154,33 @@ namespace SidingBg.Core
 
             if (page.Content == null)
             {
-                var content = new Content()
-                {
-                    Header = page.Name,
-                    Page = page
-                };
-                _context.Contents.Add(content);
-                _context.SaveChanges();
+                CreateContent(page);
+            }
+
+            if (page.Type == PageType.Tabs)
+            {
+                CreateTab(model,
+                    page);
             }
 
             var contentId = page.ContentId;
 
-
             if (page.Content.TextFields.Count == 0)
             {
-                CreateTextFields(model, contentId);
+                CreateTextFields(model,
+                    contentId);
             }
             else
             {
-                EditTextFields(model, page);
+                EditTextFields(model,
+                    page);
             }
 
 
             if (model.Images.Length > 0)
             {
-                CreateImage(model, page);
+                CreateImage(model,
+                    page);
             }
 
             _context.SaveChanges();
@@ -179,16 +188,59 @@ namespace SidingBg.Core
             return model;
         }
 
-        private static void EditTextFields(AddEditPageViewMode model, Page page)
+        private void CreateContent(Page page)
         {
-            for (int i = 0; i < model.Contents.Length; i++)
+            var content = new Content()
+            {
+                Header = page.Name,
+                Page = page
+            };
+            _context.Contents.Add(content);
+            _context.SaveChanges();
+        }
+
+        private void CreateTab(AddEditPageViewMode model,
+            Page page)
+        {
+            foreach (var tab in model.Tabs)
+            {
+                var tabEntity = new Tab
+                {
+                    Content = page.Content,
+                    Text = tab.Text,
+                    Name = tab.Name
+                };
+                _context.Tabs.Add(tabEntity);
+
+                foreach (var tabImage in tab.Images)
+                {
+                    var imageEntity = new Image
+                    {
+                        Base64 = tabImage,
+                        Tab = tabEntity,
+                    };
+                    _context.Images.Add(imageEntity);
+                }
+            }
+
+            _context.SaveChanges();
+        }
+
+        private static void EditTextFields(AddEditPageViewMode model,
+            Page page)
+        {
+            for (int i = 0;
+                i < model.Contents.Length;
+                i++)
             {
                 var input = model.Contents[i];
-                page.Content.TextFields.ToArray()[i].Text = input ?? "";
+                page.Content.TextFields.ToArray()[i]
+                        .Text = input ?? "";
             }
         }
 
-        private void CreateTextFields(AddEditPageViewMode model, string contentId)
+        private void CreateTextFields(AddEditPageViewMode model,
+            string contentId)
         {
             foreach (var content in model.Contents)
             {
@@ -202,14 +254,18 @@ namespace SidingBg.Core
             }
         }
 
-        private void CreateImage(AddEditPageViewMode model, Page page)
+        private void CreateImage(AddEditPageViewMode model,
+            Page page)
         {
-            for (int i = 0; i < model.Images.Length; i++)
+            for (int i = 0;
+                i < model.Images.Length;
+                i++)
             {
                 var image = model.Images[i];
-                if (page.Content.Images.Count >= i+1 && page.Content.Images.Count > 0)
+                if (page.Content.Images.Count >= i + 1 && page.Content.Images.Count > 0)
                 {
-                    page.Content.Images.ToArray()[i].Base64 = image;
+                    page.Content.Images.ToArray()[i]
+                        .Base64 = image;
                 }
                 else
                 {

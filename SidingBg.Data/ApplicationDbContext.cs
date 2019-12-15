@@ -13,11 +13,12 @@ namespace SidingBg.Data
         {
         }
 
-        public virtual DbSet<Content> Contents{ get; set; }
+        public virtual DbSet<Content> Contents { get; set; }
         public virtual DbSet<Controller> Controllers { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<TextField> TextFields { get; set; }
         public virtual DbSet<Page> Pages { get; set; }
+        public virtual DbSet<Tab> Tabs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
