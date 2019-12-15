@@ -42,6 +42,7 @@ export default class CreatePage extends React.Component {
             files: [],
             pageName: "",
             textsValues: [],
+            contentId: '',
         };
     }
 
@@ -68,13 +69,15 @@ export default class CreatePage extends React.Component {
                     pageName: data.pageName,
                     id: data.pageId,
                     files: data.images,
-                    type:data.type
+                    type: data.type,
+                    contentId: data.contentId,
+                    tabsComp: <CreateTabs contentId={data.contentId} tabs={data.tabs}></CreateTabs>
                 })
                 document.querySelector('#ta1').value = data.contents[1] || '';
                 document.querySelector('#ta2').value = data.contents[3] || '';
+
             })
     }
-
 
     handleSubmit(event) {
         event.preventDefault();
@@ -209,19 +212,20 @@ export default class CreatePage extends React.Component {
                                 </CardDeck>
 
                                 <Button
-                                block
-                                className="btn-round"
-                                color="info"
-                                size="lg"
-                                type="submit"
-                            >
-                                Save
+                                    block
+                                    className="btn-round"
+                                    color="info"
+                                    size="lg"
+                                    type="submit"
+                                >
+                                    Save
                                 </Button>
                             </Container>
-                            {/* {this.state.type==1 ? <CreateTabs></CreateTabs>:  ''} */}
-                            <CreateTabs></CreateTabs>
-                            
+                            {/* {this.state.type==2 ? <CreateTabs></CreateTabs>:  ''} */}
                         </form>
+
+                        {this.state.tabsComp}
+
                     </div>
                 </div>
                 <DefaultFooter></DefaultFooter>

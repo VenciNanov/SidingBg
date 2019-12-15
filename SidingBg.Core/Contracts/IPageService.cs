@@ -11,6 +11,7 @@ namespace SidingBg.Core.Contracts
     public interface IPageService
     {
         CreateRouteViewModel CreateRoute(CreateRouteViewModel vm);
+        bool CreateTab(CreateTabViewModel model);
         CMSIndexViewModel GetAll();
         AddEditPageViewMode Get(string id);
         AddEditPageViewMode CreatePage(AddEditPageViewMode model);

@@ -29,6 +29,17 @@ namespace SidingBg.Api.Controllers
             return Ok(model);
         }
 
+        [HttpPost]
+        [Route("CreateTab")]
+        public IActionResult CreateTab(CreateTabViewModel model)
+        {
+            var res = _pageService.CreateTab(model);
+            if (!res)
+                return BadRequest();
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("GetAll")]
         public IActionResult Index()

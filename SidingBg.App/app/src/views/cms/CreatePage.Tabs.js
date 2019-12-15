@@ -8,23 +8,19 @@ import {
     Card,
     CardHeader,
     CardBody,
-    CardFooter,
-    Form,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup,
     Container,
     Row,
     Col,
-    Label,
     FormGroup, CardDeck, CardImg, CardTitle, CardSubtitle, CardText,
     FormText,
+    Input,
     NavItem,
     NavLink,
     Nav,
     TabContent,
     TabPane,
+    Modal,
+    ModalBody
 } from "reactstrap";
 
 // core components
@@ -38,14 +34,18 @@ const api = "https://localhost:44353/api/"
 export default class CreateTabs extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.contentId)
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmitCreateTab = this.handleSubmitCreateTab.bind(this);
         this.state = {
             id: "",
-            contentId: "",
+            contentId: this.props.contentId,
+            tabs: this.props.tabs,
             iconPills: '1',
-            setIconPills: '1',
+            setIconPills: 1,
             pills: '1',
-            setPills: '1'
+            setPills: '1',
+            setModal: false
 
         };
     }
@@ -71,17 +71,32 @@ export default class CreateTabs extends React.Component {
 
         console.log(this.state);
 
-        fetch(api + 'templates/addEditPage', {
+        fetch(api + 'templates/saveTabs', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                "pageId": this.state.id,
-                "contents": this.state.texts,
-                "images": this.state.files
+                "contentId": this.state.contentId,
+                "tabs": this.state.tabs
             })
         });
         // this.props.history.push('/');
     };
+
+    handleSubmitCreateTab(event) {
+        event.preventDefault();
+        console.log(this.state.createTabName)
+
+        fetch(api + "templates/createTab", {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({
+                'contentId': this.state.contentId,
+                'tabName': this.state.createTabName,
+            })
+        }).then((data => {
+            this.setState({ setModal: false });
+        }))
+    }
 
     render() {
         const { iconPills, setIconPills } = this.state;
@@ -91,121 +106,98 @@ export default class CreateTabs extends React.Component {
                 <div className="section section-tabs">
                     <Container>
                         <Row>
+                            <Button
+                                color="info"
+                                className="mr-1"
+                                onClick={() => this.setState({ setModal: true })}
+                            >
+                                <i className="now-ui-icons  ui-1_simple-add"> </i>&nbsp;
+                             Add new tab
+              </Button>
                             <Col className="ml-auto mr-auto" md="10" xl="12">
                                 <p className="category">Tabs with Icons on Card</p>
-                                <Card>
-                                    <CardHeader>
-                                        <Nav className="justify-content-center" role="tablist" tabs>
-                                            <NavItem>
-                                                <NavLink
-                                                    className={setIconPills === "1" ? "active" : ""}
-                                                    href="#pablo"
-                                                    onClick={e => {
-                                                        e.preventDefault();
-                                                        this.setState({ setIconPills: "1" });
-                                                    }}
-                                                >
-                                                    <i className="now-ui-icons objects_umbrella-13"></i>
-                                                    Home
-                            </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink
-                                                    className={setIconPills === "2" ? "active" : ""}
-                                                    href="#pablo"
-                                                    onClick={e => {
-                                                        e.preventDefault();
-                                                        this.setState({ setIconPills: "2" });
-                                                    }}
-                                                >
-                                                    <i className="now-ui-icons shopping_cart-simple"></i>
-                                                    Profile
-                            </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink
-                                                    className={setIconPills === "3" ? "active" : ""}
-                                                    href="#pablo"
-                                                    onClick={e => {
-                                                        e.preventDefault();
-                                                        this.setState({ setIconPills: "3" });
-                                                    }}
-                                                >
-                                                    <i className="now-ui-icons shopping_shop"></i>
-                                                    Messages
-                            </NavLink>
-                                            </NavItem>
-                                            <NavItem>
-                                                <NavLink
-                                                    className={setIconPills === "4" ? "active" : ""}
-                                                    href="#pablo"
-                                                    onClick={e => {
-                                                        e.preventDefault();
-                                                        this.setState({ setIconPills: "4" });
-                                                    }}
-                                                >
-                                                    <i className="now-ui-icons ui-2_settings-90"></i>
-                                                    Settings
-                            </NavLink>
-                                            </NavItem>
-                                        </Nav>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <TabContent
-                                            className="text-center"
-                                            activeTab={"iconPills" + setIconPills}
-                                        >
-                                            <TabPane tabId="iconPills1">
-                                                <p>
-                                                    I think that’s a responsibility that I have, to push
-                                                    possibilities, to show people, this is the level that
-                                                    things could be at. So when you get something that has
-                                                    the name Kanye West on it, it’s supposed to be pushing
-                                                    the furthest possibilities. I will be the leader of a
-                                                    company that ends up being worth billions of dollars,
-                                                    because I got the answers. I understand culture. I am
-                                                    the nucleus.
-                            </p>
-                                            </TabPane>
-                                            <TabPane tabId="iconPills2">
-                                                <p>
-                                                    I will be the leader of a company that ends up being
-                                                    worth billions of dollars, because I got the answers. I
-                                                    understand culture. I am the nucleus. I think that’s a
-                                                    responsibility that I have, to push possibilities, to
-                                                    show people, this is the level that things could be at.
-                                                    I think that’s a responsibility that I have, to push
-                                                    possibilities, to show people, this is the level that
-                                                    things could be at.
-                            </p>
-                                            </TabPane>
-                                            <TabPane tabId="iconPills3">
-                                                <p>
-                                                    I think that’s a responsibility that I have, to push
-                                                    possibilities, to show people, this is the level that
-                                                    things could be at. So when you get something that has
-                                                    the name Kanye West on it, it’s supposed to be pushing
-                                                    the furthest possibilities. I will be the leader of a
-                                                    company that ends up being worth billions of dollars,
-                                                    because I got the answers. I understand culture. I am
-                                                    the nucleus.
-                            </p>
-                                            </TabPane>
-                                            <TabPane tabId="iconPills4">
-                                                <p>
-                                                    "I will be the leader of a company that ends up being
-                                                    worth billions of dollars, because I got the answers. I
-                                                    understand culture. I am the nucleus. I think that’s a
-                                                    responsibility that I have, to push possibilities, to
-                                                    show people, this is the level that things could be at."
-                            </p>
-                                            </TabPane>
-                                        </TabContent>
-                                    </CardBody>
-                                </Card>
+                                <form onSubmit={this.handleSubmit}>
+                                    <Card>
+                                        <CardHeader>
+                                            <Nav className="justify-content-center" role="tablist" tabs>
+
+                                                {
+                                                    this.state.tabs.map((tab, i) => {
+                                                        console.log(i + 1)
+                                                        return <NavItem key={i}><NavLink
+                                                            className={setIconPills == (i + 1) ? "active" : ""}
+                                                            href="#pablo"
+                                                            onClick={e => {
+                                                                e.preventDefault();
+                                                                this.setState({ setIconPills: (i + 1) });
+                                                            }}
+                                                        >
+                                                            {tab.name}
+                                                        </NavLink></NavItem>
+                                                    })
+                                                }
+                                            </Nav>
+                                        </CardHeader>
+                                        <CardBody>
+                                            <TabContent
+                                                className="text-center"
+                                                activeTab={"iconPills" + setIconPills}
+                                            >
+                                                {this.state.tabs.map((tab, i) => {
+                                                    return <TabPane tabId={"iconPills" + (i + 1)}>
+                                                        <p>
+                                                            {i + 1}
+                                                            <Input
+                                                                onChange={(e) => tab.text = e.target.value || ""}
+                                                                defaultValue={tab.text}
+                                                                type="textarea"></Input>
+                                                        </p>
+                                                    </TabPane>
+                                                })}
+                                            </TabContent>
+                                        </CardBody>
+                                        <Button color="info" type="submit">
+                                            Save tabs
+                  </Button>
+                                    </Card>
+                                </form>
                             </Col>
                         </Row>
                     </Container>
+                    <Modal isOpen={this.state.setModal} toggle={() => this.setState({ setModal: false })}>
+                        <div className="modal-header justify-content-center">
+                            <button
+                                className="close"
+                                type="button"
+                                onClick={() => this.setState({ setModal: false })}
+                            >
+                                <i className="now-ui-icons ui-1_simple-remove"></i>
+                            </button>
+                            <h4 className="title title-up">Create Tab</h4>
+                        </div>
+                        <form onSubmit={this.handleSubmitCreateTab}>
+                            <ModalBody>
+                                <label>Tab name</label>
+                                <Input type="Input"
+                                    onChange={(e) => this.setState({ createTabName: e.target.value })}
+                                ></Input>
+
+
+                            </ModalBody>
+                            <div className="modal-footer">
+                                <Button
+                                    color="danger"
+                                    type="button"
+                                    onClick={() => this.setStates({ setModal: false })}
+                                >
+                                    Cancel
+                  </Button>
+                                <Button color="info" type="submit">
+                                    Create
+                  </Button>
+                            </div>
+                        </form>
+                    </Modal>
                 </div>
             </>
         );
