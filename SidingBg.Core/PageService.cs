@@ -207,7 +207,7 @@ namespace SidingBg.Core
             for (int i = 0; i < model.Images.Length; i++)
             {
                 var image = model.Images[i];
-                if (page.Content.Images.Count >= i && page.Content.Images.Count > 0)
+                if (page.Content.Images.Count >= i+1 && page.Content.Images.Count > 0)
                 {
                     page.Content.Images.ToArray()[i].Base64 = image;
                 }

@@ -22,16 +22,16 @@ const api = "https://localhost:44353/api/Pages/"
 export default class BasicTemplate extends React.Component {
 
   updateNavbarColor = () => {
+    console.log(document.documentElement.scrollTop)
+    console.log(this.state.setNavbarColor)
     if (
-      document.documentElement.scrollTop > 399 ||
-      document.body.scrollTop > 399
+      document.documentElement.scrollTop > 399
     ) {
-      this.state.setNavbarColor = "";
+      this.setState({setNavbarColor:""});
     } else if (
-      document.documentElement.scrollTop < 400 ||
-      document.body.scrollTop < 400
+      document.documentElement.scrollTop < 400
     ) {
-      this.state.setNavbarColor = "navbar-transparent";
+      this.setState({setNavbarColor:"navbar-transparent"});
     }
   };
 
@@ -39,7 +39,7 @@ export default class BasicTemplate extends React.Component {
     window.removeEventListener("scroll", this.updateNavbarColor);
   };
 
-  getMenuItems
+  // getMenuItems
 
   constructor(props) {
     super(props)
@@ -50,16 +50,18 @@ export default class BasicTemplate extends React.Component {
       setCollapseOpen: false,
       controllers: []
     }
-    window.addEventListener("scroll", this.updateNavbarColor);
+    
+    
   }
 
   componentDidMount() {
     fetch(api + 'GetMenuItems').then((res) => res.json()).then((data) => this.setState({ controllers: data.controllers }))
+   
   }
 
   render() {
     const { controllers } = this.state
-
+    window.addEventListener("scroll", this.updateNavbarColor);
     return (
       <>
         {this.state.collapseOpen ? (
@@ -71,7 +73,7 @@ export default class BasicTemplate extends React.Component {
             }}
           />
         ) : null}
-        <Navbar className={"fixed-top " + this.state.navbarColor} color="info" expand="lg">
+        <Navbar className={"fixed-top " + this.state.setNavbarColor} color="info" expand="lg">
           <Container>
 
             <div className="navbar-translate">
@@ -132,7 +134,7 @@ export default class BasicTemplate extends React.Component {
                   }
 
                   let url = '/page/' + controller.pages[0].alias
-                  return <NavItem>
+                  return <NavItem key={i}>
                     <NavLink to={url} tag={Link} key={i}>
                       {controller.pages[0].headerName}
                     </NavLink>
