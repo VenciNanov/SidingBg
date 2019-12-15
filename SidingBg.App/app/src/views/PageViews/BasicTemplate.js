@@ -85,7 +85,7 @@ export default class BasicTemplate extends React.Component {
                                 <h3>
                                     {this.state.texts[2]||''}
                                 </h3>
-                                {this.state.texts[3]||''}
+                                <p>{this.state.texts[3]||''}</p>
                             </Col>
                         </Row>
                     </div>
