@@ -71,7 +71,7 @@ export default class CreateTabs extends React.Component {
 
         console.log(this.state);
 
-        fetch(api + 'templates/saveTabs', {
+        fetch(api + 'Templates/SaveTabs', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

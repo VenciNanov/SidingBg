@@ -59,6 +59,19 @@ namespace SidingBg.Core
             return vm;
         }
 
+        public bool SaveTabs(SaveTabsViewModel model)
+        {
+            foreach (var tab in model.Tabs)
+            {
+                var tabEntity = _context.Tabs.Find(tab.Id);
+                tabEntity.Text = tab.Text;
+            }
+
+            _context.SaveChanges();
+
+            return true;
+        }
+
         public CMSIndexViewModel GetAll()
         {
             var pages = _context.Pages.Select(p => new PageListViewModel()

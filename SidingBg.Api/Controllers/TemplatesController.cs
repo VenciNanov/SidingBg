@@ -40,6 +40,19 @@ namespace SidingBg.Api.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("SaveTabs")]
+        public IActionResult SaveTab(SaveTabsViewModel model)
+        {
+            var res = _pageService.SaveTabs(model);
+            if (!res)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("GetAll")]
         public IActionResult Index()
