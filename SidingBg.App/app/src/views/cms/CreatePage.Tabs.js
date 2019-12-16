@@ -108,8 +108,8 @@ export default class CreateTabs extends React.Component {
                                 <i className="now-ui-icons  ui-1_simple-add"> </i>&nbsp;
                              Add new tab
               </Button>
-                            <Col className="ml-auto mr-auto" md="10" xl="12">
-                                <p className="category">Tabs with Icons on Card</p>
+              {this.state.tabs.length>0?
+                            <Col className="ml-auto mr-auto" md="10" xl="12">                                
                                 <form onSubmit={this.handleSubmit}>
                                     <Card>
                                         <CardHeader>
@@ -166,6 +166,7 @@ export default class CreateTabs extends React.Component {
                                     </Card>
                                 </form>
                             </Col>
+                             :""}
                         </Row>
                     </Container>
                     <Modal isOpen={this.state.setModal} toggle={() => this.setState({ setModal: false })}>

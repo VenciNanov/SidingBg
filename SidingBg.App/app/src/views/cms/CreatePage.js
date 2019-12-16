@@ -155,7 +155,7 @@ export default class CreatePage extends React.Component {
                             <Container>
                                 <CardDeck>
                                     <Card>
-                                        <CardImg top width="100%" src={this.state.files[0]} alt="Image one" />
+                                       {this.state.files[0] ? <CardImg top width="100%" src={this.state.files[0]} alt="Image one" /> :""} 
                                         <CardBody>
                                             <CardTitle>Image 1</CardTitle>
                                             <FormGroup>
@@ -169,11 +169,10 @@ export default class CreatePage extends React.Component {
                                                     It's a bit lighter and easily wraps to a new line.
                                             </FormText>
                                             </FormGroup>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
-                                        <CardImg top width="100%" src={this.state.files[1]} alt="Card image cap" />
+                                    {this.state.files[1] ? <CardImg top width="100%" src={this.state.files[1]} alt="Image one" /> :""} 
                                         <CardBody>
                                             <CardTitle>Image 2</CardTitle>
                                             <FormGroup>
@@ -188,11 +187,10 @@ export default class CreatePage extends React.Component {
                                                     It's a bit lighter and easily wraps to a new line.
                                             </FormText>
                                             </FormGroup>
-                                            <Button>Button</Button>
                                         </CardBody>
                                     </Card>
                                     <Card>
-                                        <CardImg top width="100%" src={this.state.files[2]} alt="Card image cap" />
+                                    {this.state.files[2] ? <CardImg top width="100%" src={this.state.files[2]} alt="Image one" /> :""} 
                                         <CardBody>
                                             <CardTitle>Image 3</CardTitle>
                                             <FormGroup>
@@ -205,8 +203,7 @@ export default class CreatePage extends React.Component {
                                                     This is some placeholder block-level help text for the above input.
                                                     It's a bit lighter and easily wraps to a new line.
                                             </FormText>
-                                            </FormGroup>
-                                            <Button>Button</Button>
+                                            </FormGroup>                                            
                                         </CardBody>
                                     </Card>
                                 </CardDeck>
@@ -221,10 +218,10 @@ export default class CreatePage extends React.Component {
                                     Save
                                 </Button>
                             </Container>
-                            {/* {this.state.type==2 ? <CreateTabs></CreateTabs>:  ''} */}
-                        </form>
 
-                        {this.state.tabsComp}
+                        </form>
+                        {this.state.type == 2 ? this.state.tabsComp: ''}
+                        {/* {this.state.tabsComp} */}
 
                     </div>
                 </div>

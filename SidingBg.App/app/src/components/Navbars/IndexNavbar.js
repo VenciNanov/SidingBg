@@ -123,8 +123,8 @@ export default class BasicTemplate extends React.Component {
                         {
                           controller.pages.map((page) => {
                             let href = '/page/' + page.alias
-                            return <DropdownItem href="#pablo">
-                              {page.pageName}
+                            return <DropdownItem href={href}>
+                              {page.headerName}
                             </DropdownItem>
                           })
                         }
