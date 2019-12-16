@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -65,6 +66,15 @@ namespace SidingBg.Core
             {
                 var tabEntity = _context.Tabs.Find(tab.Id);
                 tabEntity.Text = tab.Text;
+                if (tab.Images.Length>0)
+                {
+                    var image =new Image(tab.Images[0]);
+                    
+                    _context.Images.Add(image);
+
+                    tabEntity.Images.Add(image);
+                }
+                
             }
 
             _context.SaveChanges();
@@ -263,7 +273,21 @@ namespace SidingBg.Core
             _context.SaveChanges();
 
             return true;
+        }
 
+        public List<TabViewModel> GetTabsByContentId(string contentId)
+        {
+            var content = _context.Contents.Find(contentId);
+
+            var model = new List<TabViewModel>();
+            model = content.Tabs.Select(t => new TabViewModel
+            {
+                Id = t.Id,
+                Name = t.Name,
+                Images = t.Images.Select(i=>i.Base64).ToArray(),
+                Text = t.Text
+            }).ToList();
+            return model;
         }
 
         private static void EditTextFields(AddEditPageViewMode model,

@@ -13,6 +13,7 @@ import {
     Col,
     FormGroup, CardDeck, CardImg, CardTitle, CardSubtitle, CardText,
     FormText,
+    
     Input,
     NavItem,
     NavLink,
@@ -34,7 +35,6 @@ const api = "https://localhost:44353/api/"
 export default class CreateTabs extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props.contentId)
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmitCreateTab = this.handleSubmitCreateTab.bind(this);
         this.state = {
@@ -61,15 +61,8 @@ export default class CreateTabs extends React.Component {
         };
     }
 
-    componentDidMount() {
-
-    }
-
-
     handleSubmit(event) {
         event.preventDefault();
-
-        console.log(this.state);
 
         fetch(api + 'Templates/SaveTabs', {
             method: 'post',
@@ -84,7 +77,6 @@ export default class CreateTabs extends React.Component {
 
     handleSubmitCreateTab(event) {
         event.preventDefault();
-        console.log(this.state.createTabName)
 
         fetch(api + "templates/createTab", {
             method: 'POST',
@@ -93,7 +85,9 @@ export default class CreateTabs extends React.Component {
                 'contentId': this.state.contentId,
                 'tabName': this.state.createTabName,
             })
-        }).then((data => {
+        }).then((res) => res.json()).then((data => {
+
+            this.setState({ tabs: data })
             this.setState({ setModal: false });
         }))
     }
@@ -123,7 +117,6 @@ export default class CreateTabs extends React.Component {
 
                                                 {
                                                     this.state.tabs.map((tab, i) => {
-                                                        console.log(i + 1)
                                                         return <NavItem key={i}><NavLink
                                                             className={setIconPills == (i + 1) ? "active" : ""}
                                                             href="#pablo"
@@ -145,13 +138,24 @@ export default class CreateTabs extends React.Component {
                                             >
                                                 {this.state.tabs.map((tab, i) => {
                                                     return <TabPane tabId={"iconPills" + (i + 1)}>
-                                                        <p>
-                                                            {i + 1}
+                                                        Text content
+                                                        <p>                                                            
                                                             <Input
                                                                 onChange={(e) => tab.text = e.target.value || ""}
                                                                 defaultValue={tab.text}
                                                                 type="textarea"></Input>
                                                         </p>
+                                                        <Row>
+                                                            <Col xl="3">
+                                                            <img src={tab.images[0]}/></Col>
+                                                        </Row>
+                                                        <Col className="">                                                        
+                                                        Upload image (not required)
+                                                            <Input
+                                                                onChange={(e) =>this.getBase64(e.target.files[0], (result) => {
+                                                                    tab.images[0] = result })}
+                                                                type="file"></Input>
+                                                        </Col>
                                                     </TabPane>
                                                 })}
                                             </TabContent>
