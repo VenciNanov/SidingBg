@@ -167,7 +167,14 @@ namespace SidingBg.Core
                 Contents = page.Content.TextFields.Select(c => c.Text)
                     .ToArray(),
                 Images = page.Content.Images.Select(i => i.Base64)
-                    .ToArray()
+                    .ToArray(),
+                Tabs = page.Type==(PageType)2? page.Content.Tabs.Select(tab=>new AddEditTabViewModel
+                {
+                    Id=tab.Id,
+                    Name = tab.Name,
+                    Text = tab.Text,
+                    Images = tab.Images.Select(i=>i.Base64).ToArray()
+                }).ToArray():null
             };
 
             return model;
@@ -188,11 +195,11 @@ namespace SidingBg.Core
                 CreateContent(page);
             }
 
-            if (page.Type == PageType.Tabs)
-            {
-                CreateTab(model,
-                    page);
-            }
+            //if (page.Type == PageType.Tabs)
+            //{
+            //    CreateTab(model,
+            //        page);
+            //}
 
             var contentId = page.ContentId;
 

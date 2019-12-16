@@ -9,7 +9,8 @@ import {
     InputGroup,
     Container,
     Row,
-    Col
+    Col,
+    
 } from "reactstrap";
 
 // core components
@@ -17,6 +18,7 @@ import IndexNavbar from "components/Navbars/IndexNavbar";
 import LandingPageHeader from "components/Headers/LandingPageHeader";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 import BasicTemplate from "views/PageViews/BasicTemplate";
+import TabsTemplate from "views/PageViews/TabsTemplate";
 import { stat } from "fs";
 
 
@@ -48,7 +50,7 @@ export default class Page extends React.Component {
             case 1:
                 return <BasicTemplate alias={alias}></BasicTemplate>
             case 2:
-                return ""
+                return <TabsTemplate alias={alias}></TabsTemplate>
             case 3:
                 return ""
             default:
