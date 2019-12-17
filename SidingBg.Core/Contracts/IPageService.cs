@@ -19,6 +19,7 @@ namespace SidingBg.Core.Contracts
         AddEditPageViewMode CreatePage(AddEditPageViewMode model);
         AddEditPageViewMode GetByAlias(string alias);
         PageType GetType(string alias);
+        ImageViewModel CreateImage(CreateImageViewModel model);
 
         MenuItemsViewModel GetMenuItems();
 

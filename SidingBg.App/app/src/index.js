@@ -18,6 +18,7 @@ import CreateRoutePage from "views/examples/CreateRoutePage";
 import CreatePage from "views/cms/CreatePage";
 import CMSIndex from "views/cms/Index";
 import Page from "views/PageViews/Page";
+import CreateGallery from "views/cms/CreatePage.Gallery";
 
 const api = "https://localhost:44353/api/"
 
@@ -52,6 +53,10 @@ ReactDOM.render(
         <Route
           path="/cms/create-page/:id"
           render={props => <CreatePage {...props} />}
+        />
+        <Route
+          path="/cms/create-gallery/:id"
+          render={props => <CreateGallery {...props} />}
         />
         <Route
           path="/cms/index"

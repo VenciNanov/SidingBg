@@ -83,5 +83,19 @@ namespace SidingBg.Api.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        [Route("UploadImage")]
+        public IActionResult UploadImage(CreateImageViewModel model)
+        {
+            var response = _pageService.CreateImage(model);
+
+            if (response == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(response);
+        }
     }
 }

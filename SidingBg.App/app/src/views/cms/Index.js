@@ -62,7 +62,11 @@ export default class CMSIndex extends React.Component {
                     </Row>
                     <Container>
                         <ListGroup>
-                            {pages.map(page => {
+                            {pages.map(page => { 
+                                if(page.type==3){
+                                    var url = `/cms/create-gallery/${page.pageId}`
+                                    return <ListGroupItem tag="a" href={url} key={page.key} >{page.controller}/{page.page}</ListGroupItem>    
+                                }                               
                                 var url = `/cms/create-page/${page.pageId}`
                                 return <ListGroupItem tag="a" href={url} key={page.key} >{page.controller}/{page.page}</ListGroupItem>
                             })}

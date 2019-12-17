@@ -46,7 +46,6 @@ export default class CreateTabs extends React.Component {
             pills: '1',
             setPills: '1',
             setModal: false
-
         };
     }
 

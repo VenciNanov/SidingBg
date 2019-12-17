@@ -4,11 +4,9 @@ using System.Text;
 
 namespace SidingBg.ViewModels.CMS
 {
-    public class PageListViewModel
+    public class CreateImageViewModel
     {
-        public string Controller { get; set; }
-        public string Page { get; set; }
         public string PageId { get; set; }
-        public int Type { get; set; }
+        public string Image { get; set; }
     }
 }

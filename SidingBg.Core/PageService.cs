@@ -88,7 +88,8 @@ namespace SidingBg.Core
             {
                 Controller = p.Controller.Name,
                 Page = p.Name,
-                PageId = p.Id
+                PageId = p.Id,
+                Type=(int)p.Type
             });
 
             var model = new CMSIndexViewModel
@@ -97,6 +98,27 @@ namespace SidingBg.Core
             };
 
             return model;
+        }
+
+        public ImageViewModel CreateImage(CreateImageViewModel model)
+        {
+            var page = _context.Pages.Find(model.PageId);
+            if (page==null)
+            {
+                return null;
+            }
+
+            var image = new Image(model.Image) {ContentId = page.ContentId};
+            _context.Images.Add(image);
+            _context.SaveChanges();
+
+            var response = new ImageViewModel
+            {
+                Base64 = image.Base64,
+                Id = image.Id
+            };
+
+            return response;
         }
 
         public AddEditPageViewMode Get(string id)
@@ -109,7 +131,11 @@ namespace SidingBg.Core
                 PageName = page.Name,
                 Contents = page.Content.TextFields.Select(c => c.Text)
                     .ToArray(),
-                Images = page.Content.Images.Select(i => i.Base64)
+                Images = page.Content.Images.Select(i =>new ImageViewModel
+                    {
+                        Id = i.Id,
+                        Base64 = i.Base64
+                    })
                     .ToArray(),
                 Type = (int)page.Type,
                 ContentId = page.ContentId,
@@ -166,7 +192,11 @@ namespace SidingBg.Core
                 PageName = page.Name,
                 Contents = page.Content.TextFields.Select(c => c.Text)
                     .ToArray(),
-                Images = page.Content.Images.Select(i => i.Base64)
+                Images = page.Content.Images.Select(i =>new ImageViewModel
+                    {
+                        Id = i.Id,
+                        Base64 = i.Base64
+                    })
                     .ToArray(),
                 Tabs = page.Type==(PageType)2? page.Content.Tabs.Select(tab=>new AddEditTabViewModel
                 {
@@ -336,13 +366,13 @@ namespace SidingBg.Core
                 if (page.Content.Images.Count >= i + 1 && page.Content.Images.Count > 0)
                 {
                     page.Content.Images.ToArray()[i]
-                        .Base64 = image;
+                        .Base64 = image.Base64;
                 }
                 else
                 {
                     var entityImage = new Image
                     {
-                        Base64 = image,
+                        Base64 = image.Base64,
                         Content = page.Content,
                         Position = i,
                     };
