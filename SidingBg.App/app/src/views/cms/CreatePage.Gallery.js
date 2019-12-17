@@ -75,8 +75,8 @@ export default class CreateGallery extends React.Component {
                     })
                 }).then((response) => response.json())
                 .then((data) => {
-                    let newArray = this.state.files.concat({id:data.id,base64:data.base64})
-                    this.setState({files:newArray})
+                    let newArray = this.state.files.concat({ id: data.id, base64: data.base64 })
+                    this.setState({ files: newArray })
                     console.log(this.state.files)
                 })
         })
@@ -179,19 +179,22 @@ export default class CreateGallery extends React.Component {
                                         </Col>
                                     </Row>
 
-                                    <Row style={{ paddingTop: 20 }}>
+                                    <Row>
                                         {
+
                                             this.state.files.map((image) => {
-                                                return <Card>
-                                                    {image.base64 ? <CardImg top width="100%" src={image.base64} alt="Image one" /> : ""}
-                                                    <CardBody>
-                                                        <Button color="danger"
-                                                            onClick={(e) => {
-                                                                this.deleteImage(image.id)
-                                                            }}
-                                                        >Delete</Button>
-                                                    </CardBody>
-                                                </Card>
+                                                return <Col md="3" style={{paddingTop:20}}>
+                                                    <Card>
+                                                        {image.base64 ? <CardImg top width="100%" src={image.base64} alt="Image one" /> : ""}
+                                                        <CardBody>
+                                                            <Button color="danger"
+                                                                onClick={(e) => {
+                                                                    this.deleteImage(image.id)
+                                                                }}
+                                                            >Delete</Button>
+                                                        </CardBody>
+                                                    </Card>
+                                                </Col>
                                             })
                                         }
 
