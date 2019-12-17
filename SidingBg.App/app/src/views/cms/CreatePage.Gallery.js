@@ -28,6 +28,7 @@ import LandingPageHeader from "components/Headers/LandingPageHeader";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
 import DefaultFooter from "components/Footers/DefaultFooter";
 import CreateTabs from 'views/cms/CreatePage.Tabs';
+import { JsxEmit } from "typescript";
 
 const api = "https://localhost:44353/api/"
 
@@ -59,8 +60,17 @@ export default class CreateGallery extends React.Component {
     }
 
     deleteImage(id) {
-        fetch(api + "templates/DeleteImage?id=" + id);
-        // this.state.files
+        fetch(api + "templates/DeleteImage?id="+id, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },            
+        }).then(() => {
+            var newArray = this.state.files.filter((value, index, arr) => {
+                return value.id !== id
+            });
+            this.setState({
+                files: newArray
+            });
+        });
     }
 
     uploadImage(imgVal) {
@@ -183,7 +193,7 @@ export default class CreateGallery extends React.Component {
                                         {
 
                                             this.state.files.map((image) => {
-                                                return <Col md="3" style={{paddingTop:20}}>
+                                                return <Col md="3" style={{ paddingTop: 20 }}>
                                                     <Card>
                                                         {image.base64 ? <CardImg top width="100%" src={image.base64} alt="Image one" /> : ""}
                                                         <CardBody>

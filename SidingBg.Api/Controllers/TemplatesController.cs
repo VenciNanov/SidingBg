@@ -97,5 +97,19 @@ namespace SidingBg.Api.Controllers
 
             return Ok(response);
         }
+
+        [HttpPost]
+        [Route("DeleteImage")]
+        public IActionResult DeleteImage(string id)
+        {
+            var response = _pageService.DeleteImage(id);
+            if (!response)
+            {
+                return BadRequest();
+            }
+
+
+            return Ok();
+        }
     }
 }

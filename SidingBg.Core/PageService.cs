@@ -121,6 +121,18 @@ namespace SidingBg.Core
             return response;
         }
 
+        public bool DeleteImage(string id)
+        {
+            var image = _context.Images.Find(id);
+            if (image==null)
+            {
+                return false;
+            }
+            _context.Images.Remove(image);
+            _context.SaveChanges();
+            return true;
+        }
+
         public AddEditPageViewMode Get(string id)
         {
             var page = _context.Pages.Find(id);
