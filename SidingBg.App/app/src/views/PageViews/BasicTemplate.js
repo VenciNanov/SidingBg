@@ -38,9 +38,9 @@ export default class BasicTemplate extends React.Component {
         }).then((res) => res.json())
             .then((data) => {
                 this.setState({ texts: data.contents, files: data.images })
-                document.querySelector('#img1').style.backgroundImage = "url(" + this.state.files[0].base64 || '' + ")"
-                document.querySelector('#img2').style.backgroundImage = "url(" + this.state.files[1].base64 || '' + ")"
-                document.querySelector('#img3').style.backgroundImage = "url(" + this.state.files[2].base64 || '' + ")"
+                if (this.state.files[0] !== undefined) document.querySelector('#img1').style.backgroundImage = "url(" + this.state.files[0].base64 || '' + ")"
+                if (this.state.files[1] !== undefined) document.querySelector('#img2').style.backgroundImage = "url(" + this.state.files[1].base64 || '' + ")"
+                if (this.state.files[2] !== undefined) document.querySelector('#img3').style.backgroundImage = "url(" + this.state.files[2].base64 || '' + ")"
             })
     }
 

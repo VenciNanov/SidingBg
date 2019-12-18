@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using SidingBg.Api.Configurations;
+using SidingBg.Api.Extensions;
 using SidingBg.Core;
 using SidingBg.Core.Contracts;
 using SidingBg.Data;
@@ -100,6 +101,8 @@ namespace SidingBg.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDatabaseMigration();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -162,7 +162,7 @@ export default class CreatePage extends React.Component {
                                                 <Label for="exampleFile">File</Label>
                                                 <Input type="file" name="imageOne" id="ImageOne"
                                                     onChange={(e) => this.getBase64(e.target.files[0], (result) => {
-                                                        this.state.files[0].base64 = result;
+                                                        this.state.files[0]={base64:result}                                                        
                                                     })} />
                                                 <FormText color="muted">
                                                     This is some placeholder block-level help text for the above input.
@@ -179,7 +179,7 @@ export default class CreatePage extends React.Component {
                                                 <Label for="exampleFile">File</Label>
                                                 <Input type="file" name="imageTwo" id="ImageTwo"
                                                     onChange={(e) => this.getBase64(e.target.files[0], (result) => {
-                                                        this.state.files[1].base64 = result;
+                                                        this.state.files[1]={base64:result}
                                                     })}
                                                 />
                                                 <FormText color="muted">
@@ -197,7 +197,7 @@ export default class CreatePage extends React.Component {
                                                 <Label for="exampleFile">File</Label>
                                                 <Input type="file" name="imageThree" id="ImageThree"
                                                     onChange={(e) => this.getBase64(e.target.files[0], (result) => {
-                                                        this.state.files[2].base64 = result;
+                                                        this.state.files[2]={base64:result}
                                                     })} />
                                                 <FormText color="muted">
                                                     This is some placeholder block-level help text for the above input.

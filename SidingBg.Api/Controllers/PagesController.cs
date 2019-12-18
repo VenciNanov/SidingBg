@@ -27,7 +27,7 @@ namespace SidingBg.Api.Controllers
 
         [HttpGet]
         [Route("GetPageInfo")]
-        public IActionResult GetPageInfo(string alias)
+        public IActionResult GetPageInfo(string alias)  
         {
             var response = _pageService.GetType(alias);
             return Ok(new { type = response });

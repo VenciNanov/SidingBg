@@ -84,7 +84,7 @@ namespace SidingBg.Core
 
         public CMSIndexViewModel GetAll()
         {
-            var pages = _context.Pages.Select(p => new PageListViewModel()
+            var pages = _context.Pages.Where(x=>x.Alias!="Index").Select(p => new PageListViewModel()
             {
                 Controller = p.Controller.Name,
                 Page = p.Name,
@@ -136,6 +136,15 @@ namespace SidingBg.Core
         public AddEditPageViewMode Get(string id)
         {
             var page = _context.Pages.Find(id);
+            if (page==null)
+            {
+                page = _context.Pages.FirstOrDefault(x => x.Alias == id);
+            }
+
+            if (page==null)
+            {
+                return null;
+            }
 
             var model = new AddEditPageViewMode
             {

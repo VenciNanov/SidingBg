@@ -42,7 +42,6 @@ export default class CMSIndex extends React.Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({ pages: data.pages })
-                // console.log(this.state.pages)
             });
 
     }
@@ -61,6 +60,7 @@ export default class CMSIndex extends React.Component {
                     </Row>
                     <Container>
                         <ListGroup>
+                        <ListGroupItem tag="a" href="/cms/create-page/index">Index</ListGroupItem>    
                             {pages.map(page => { 
                                 if(page.type==3){
                                     var url = `/cms/create-gallery/${page.pageId}`

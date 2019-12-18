@@ -104,6 +104,11 @@ export default class BasicTemplate extends React.Component {
               navbar
             >
               <Nav navbar>
+                <NavItem>
+                  <NavLink to="/index" tag={Link}>
+                    Начало
+                  </NavLink>
+                </NavItem>
                 {controllers.map((controller, i) => {
                   if (controller.pages.length > 1) {
                     return <UncontrolledDropdown className="button-dropdown">
@@ -126,7 +131,6 @@ export default class BasicTemplate extends React.Component {
                             </DropdownItem>
                           })
                         }
-
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   }
@@ -140,46 +144,6 @@ export default class BasicTemplate extends React.Component {
                 })
 
                 }
-                <NavItem>
-                  <NavLink to="/index" tag={Link}>
-                    Начало
-                  </NavLink>
-                </NavItem>
-                <UncontrolledDropdown className="button-dropdown">
-                  <DropdownToggle
-                    caret
-                    data-toggle="dropdown"
-                    href="#pablo"
-                    id="navbarDropdown"
-                    tag="a"
-                    onClick={e => e.preventDefault()}
-                  >
-                    Фасадни покрития
-              </DropdownToggle>
-                  <DropdownMenu aria-labelledby="navbarDropdown">
-                    <DropdownItem header tag="a">
-                      Dropdown header
-                </DropdownItem>
-                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                      Action
-                </DropdownItem>
-                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                      Another action
-                </DropdownItem>
-                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                      Something else here
-                </DropdownItem>
-                    <DropdownItem divider></DropdownItem>
-                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                      Separated link
-                </DropdownItem>
-                    <DropdownItem divider></DropdownItem>
-                    <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-                      One more separated link
-                </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-
               </Nav>
             </Collapse>
           </Container>
