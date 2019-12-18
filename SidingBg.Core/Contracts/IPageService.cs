@@ -13,6 +13,8 @@ namespace SidingBg.Core.Contracts
         CreateRouteViewModel CreateRoute(CreateRouteViewModel vm);
         TabViewModel CreateTab(CreateTabViewModel model);
         bool SaveTabs(SaveTabsViewModel model);
+        bool DeleteTab(string id);
+        bool DeleteImageFromTab(string tabId);
         List<TabViewModel> GetTabsByContentId(string contentId);
         CMSIndexViewModel GetAll();
         AddEditPageViewMode Get(string id);

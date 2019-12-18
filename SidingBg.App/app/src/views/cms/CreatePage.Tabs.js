@@ -94,6 +94,36 @@ export default class CreateTabs extends React.Component {
         }))
     }
 
+    deleteTab(id) {
+        fetch(api + "templates/DeleteTab?id=" + id, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+        }).then(() => {
+            var newArray = this.state.tabs.filter((value, index, arr) => {
+                return value.id !== id
+            });
+            this.setState({
+                tabs: newArray
+            });
+        })
+    }
+    deleteTabImage(tabId,i) {
+        fetch(api + "templates/DeleteImageFromTab?tabId=" + tabId, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+        }).then(() => {
+            var newArray = this.state.tabs.filter((value, index, arr) => {
+                if(index===i){
+                    value.images=[]
+                }
+                return value
+            });
+            this.setState({
+                tabs: newArray
+            });
+        })
+    }
+
     render() {
         const { iconPills, setIconPills } = this.state;
         const { pills, setPills } = this.state;
@@ -140,6 +170,14 @@ export default class CreateTabs extends React.Component {
                                                 >
                                                     {this.state.tabs.map((tab, i) => {
                                                         return <TabPane tabId={"iconPills" + (i + 1)}>
+                                                            <Col md={{ offset: 10, size: 2 }}>
+                                                                <Button
+                                                                    color="danger"
+                                                                    onClick={() => this.deleteTab(tab.id)}
+                                                                >
+                                                                    Delete Tab
+                                            </Button>
+                                                            </Col>
                                                             Text content
                                                         <p>
                                                                 <Input
@@ -148,8 +186,11 @@ export default class CreateTabs extends React.Component {
                                                                     type="textarea"></Input>
                                                             </p>
                                                             <Row>
+                                                                {tab.images.length > 0 ? <div> <Col xl="3"><img src={tab.images ? tab.images[0] : ""} /></Col> <Col xl="3"><Button color="danger" onClick={() => this.deleteTabImage(tab.id,i)}>Delete image</Button></Col></div> : null}
+
                                                                 <Col xl="3">
-                                                                    <img src={tab.images?tab.images[0]:""} /></Col>
+
+                                                                </Col>
                                                             </Row>
                                                             <Col className="">
                                                                 Upload image (not required)
@@ -165,7 +206,7 @@ export default class CreateTabs extends React.Component {
                                             </CardBody>
                                             <Button color="info" type="submit">
                                                 Save tabs
-                  </Button>
+                                            </Button>
                                         </Card>
                                     </form>
                                 </Col>

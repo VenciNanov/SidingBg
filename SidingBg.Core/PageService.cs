@@ -82,6 +82,42 @@ namespace SidingBg.Core
             return true;
         }
 
+        public bool DeleteTab(string id)
+        {
+            var tab = _context.Tabs.Find(id);
+            if (tab==null)
+            {
+                return false;
+            }
+            _context.Tabs.Remove(tab);
+            _context.SaveChanges();
+
+            return true;
+        }
+
+        public bool DeleteImageFromTab(string tabId)
+        {
+            var tab = _context.Tabs.Find(tabId);
+            if (tab==null)
+            {
+                return false;
+            }
+            tab.Images=new List<Image>();
+            var image = tab.Images.FirstOrDefault();
+            if (image==null)
+            {
+                return false;
+            }
+
+            var imgRes = this.DeleteImage(image.Id);
+            if (imgRes==false)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public CMSIndexViewModel GetAll()
         {
             var pages = _context.Pages.Where(x => x.Alias != "Index" && x.Type != 0).Select(p => new PageListViewModel()

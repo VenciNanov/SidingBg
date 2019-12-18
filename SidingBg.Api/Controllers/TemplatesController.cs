@@ -54,6 +54,32 @@ namespace SidingBg.Api.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("DeleteTab")]
+        public IActionResult DeleteTab(string id)
+        {
+            var res = _pageService.DeleteTab(id);
+            if (!res)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("DeleteImageFromTab")]
+        public IActionResult DeleteImageFromTab(string tabId)
+        {
+            var res = _pageService.DeleteImageFromTab(tabId);
+            if (!res)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("GetAll")]
         public IActionResult Index()
