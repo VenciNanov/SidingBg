@@ -56,8 +56,7 @@ export default class CMSIndex extends React.Component {
                     <LandingPageHeader />
                     <Row className="text-center">
                         <Col>
-                            <h2>All Pages</h2>
-                            
+                            <h2>All Pages</h2>                            
                         </Col>
                     </Row>
                     <Container>

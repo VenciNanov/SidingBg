@@ -19,7 +19,8 @@ import LandingPageHeader from "components/Headers/LandingPageHeader";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 import BasicTemplate from "views/PageViews/BasicTemplate";
 import TabsTemplate from "views/PageViews/TabsTemplate";
-import { stat } from "fs";
+import Carousel from "views/index-sections/Carousel";
+import GalleryTemplate from "./GalleryTemplate";
 
 
 const api = "https://localhost:44353/api/pages/"
@@ -33,17 +34,26 @@ export default class Page extends React.Component {
             
         }
     }
+    componentDidMount(){
+        console.log("didmount")
+        console.log(this.props.match.params.alias)
+        this.fetchPageInfo(this.props.match.params.alias)
+    }
 
-    componentDidMount() {
-        fetch(api + 'GetPageInfo?alias=' + this.props.match.params.alias, {
+    componentWillReceiveProps(nextProps) {
+        console.log('willreciveprops')
+        console.log(nextProps.match.params.alias)
+        this.fetchPageInfo(nextProps.match.params.alias)
+    }
+
+    fetchPageInfo(alias){
+     return fetch(api + 'GetPageInfo?alias=' + alias, {
             method: 'GET'
         }).then((res) => res.json())
-            .then((data) => {
-                
-                this.setState({ pageComponent:this.returnPageTemplateComponent(data.type,this.props.match.params.alias)});
-               
+            .then((data) => {                
+                this.setState({ pageComponent:this.returnPageTemplateComponent(data.type,alias)});               
             })
-    }
+    } 
 
     returnPageTemplateComponent(type,alias) {
         switch (type) {
@@ -52,7 +62,7 @@ export default class Page extends React.Component {
             case 2:
                 return <TabsTemplate alias={alias}></TabsTemplate>
             case 3:
-                return ""
+                return <GalleryTemplate alias={alias}></GalleryTemplate>
             default:
                 console.log("boom")
         }

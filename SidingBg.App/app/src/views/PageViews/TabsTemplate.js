@@ -31,9 +31,9 @@ export default class TabsTemplate extends React.Component {
         this.state = {
             alias: '',
             type: '',
-            texts:[],
-            files:[],
-            tabs:[],
+            texts: [],
+            files: [],
+            tabs: [],
             setIconPills: 1,
         }
     }
@@ -44,7 +44,10 @@ export default class TabsTemplate extends React.Component {
             method: 'GET'
         }).then((res) => res.json())
             .then((data) => {
-                this.setState({texts:data.contents,files:data.images,tabs:data.tabs})
+                this.setState({ texts: data.contents, files: data.images, tabs: data.tabs });
+                document.querySelector('#img1').style.backgroundImage = "url(" + this.state.files[0].base64 || '' + ")";
+                document.querySelector('#img2').style.backgroundImage = "url(" + this.state.files[1].base64 || '' + ")";
+                document.querySelector('#img3').style.backgroundImage = "url(" + this.state.files[2].base64 || '' + ")";
             })
     }
 
@@ -56,9 +59,9 @@ export default class TabsTemplate extends React.Component {
                 <Container>
                     <Row>
                         <Col className="ml-auto mr-auto text-center" md="8">
-                            <h2 className="title">{this.state.texts[0]||''}</h2>
+                            <h2 className="title">{this.state.texts[0] || ''}</h2>
                             <h5 className="description">
-                                {this.state.texts[1]||''}
+                                {this.state.texts[1] || ''}
                             </h5>
                         </Col>
                     </Row>
@@ -68,14 +71,16 @@ export default class TabsTemplate extends React.Component {
                             <Col md="6">
                                 <div
                                     className="image-container image-left"
+                                    id="img1"
                                     style={{
                                         backgroundImage:
-                                            "url(" +this.state.files[0] || ''+ ")"
+                                            "url(" + this.state.files[0] || '' + ")"
                                     }}
                                 >
                                 </div>
                                 <div
                                     className="image-container"
+                                    id="img2"
                                     style={{
                                         backgroundImage:
                                             "url(" + this.state.files[1] || '' + ")"
@@ -85,70 +90,71 @@ export default class TabsTemplate extends React.Component {
                             <Col md="5">
                                 <div
                                     className="image-container image-right"
+                                    id="img3"
                                     style={{
                                         backgroundImage:
-                                            "url(" +this.state.files[2] || '' + ")"
+                                            "url(" + this.state.files[2] || '' + ")"
                                     }}
                                 ></div>
                                 <h3>
-                                    {this.state.texts[2]||''}
+                                    {this.state.texts[2] || ''}
                                 </h3>
-                                <p>{this.state.texts[3]||''}</p>
+                                <p>{this.state.texts[3] || ''}</p>
                             </Col>
                         </Row>
                     </div>
                 </Container>
                 <Container>
-                        <Row>
-                        
-              {this.state.tabs.length>0?
-                            <Col className="ml-auto mr-auto" md="10" xl="12">                                
-                               
-                                    <Card>
-                                        <CardHeader>
-                                            <Nav className="justify-content-center" role="tablist" tabs>
+                    <Row>
 
-                                                {
-                                                    this.state.tabs.map((tab, i) => {
-                                                        return <NavItem key={i}><NavLink
-                                                            className={setIconPills == (i + 1) ? "active" : ""}
-                                                            href="#pablo"
-                                                            onClick={e => {
-                                                                e.preventDefault();
-                                                                this.setState({ setIconPills: (i + 1) });
-                                                            }}
-                                                        >
-                                                            {tab.name}
-                                                        </NavLink></NavItem>
-                                                    })
-                                                }
-                                            </Nav>
-                                        </CardHeader>
-                                        <CardBody>
-                                            <TabContent
-                                                className="text-center"
-                                                activeTab={"iconPills" + setIconPills}
-                                            >
-                                                {this.state.tabs.map((tab, i) => {
-                                                    return <TabPane tabId={"iconPills" + (i + 1)}>                                                        
-                                                        <p>                                                            
-                                                            {tab.text}
-                                                        </p>
-                                                        <Row>
-                                                            <Col xl="3">
-                                                            <img src={tab.images[0]}/></Col>
-                                                        </Row>
-                                                        
-                                                    </TabPane>
-                                                })}
-                                            </TabContent>
-                                        </CardBody>                                        
-                                    </Card>
-                                
+                        {this.state.tabs.length > 0 ?
+                            <Col className="ml-auto mr-auto" md="10" xl="12">
+
+                                <Card>
+                                    <CardHeader>
+                                        <Nav className="justify-content-center" role="tablist" tabs>
+
+                                            {
+                                                this.state.tabs.map((tab, i) => {
+                                                    return <NavItem key={i}><NavLink
+                                                        className={setIconPills == (i + 1) ? "active" : ""}
+                                                        href="#pablo"
+                                                        onClick={e => {
+                                                            e.preventDefault();
+                                                            this.setState({ setIconPills: (i + 1) });
+                                                        }}
+                                                    >
+                                                        {tab.name}
+                                                    </NavLink></NavItem>
+                                                })
+                                            }
+                                        </Nav>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <TabContent
+                                            className="text-center"
+                                            activeTab={"iconPills" + setIconPills}
+                                        >
+                                            {this.state.tabs.map((tab, i) => {
+                                                return <TabPane tabId={"iconPills" + (i + 1)}>
+                                                    <p>
+                                                        {tab.text}
+                                                    </p>
+                                                    <Row>
+                                                        <Col xl="3">
+                                                            <img src={tab.images[0]} /></Col>
+                                                    </Row>
+
+                                                </TabPane>
+                                            })}
+                                        </TabContent>
+                                    </CardBody>
+                                </Card>
+
                             </Col>
-                             :""}
-                        </Row>
-                    </Container>
+                            : ""}
+                    </Row>
+                </Container>
             </div>
         )
     }

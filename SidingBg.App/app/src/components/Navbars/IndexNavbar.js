@@ -22,8 +22,6 @@ const api = "https://localhost:44353/api/Pages/"
 export default class BasicTemplate extends React.Component {
 
   updateNavbarColor = () => {
-    console.log(document.documentElement.scrollTop)
-    console.log(this.state.setNavbarColor)
     if (
       document.documentElement.scrollTop > 399
     ) {
@@ -90,7 +88,7 @@ export default class BasicTemplate extends React.Component {
                 className="navbar-toggler navbar-toggler"
                 onClick={() => {
                   document.documentElement.classList.toggle("nav-open");
-                  this.state.setCollapseOpen = !this.state.collapseOpen;
+                  this.state.setCollapseOpen = !this.state.setCollapseOpen;
                 }}
                 aria-expanded={this.state.setCollapseOpen}
                 type="button"
