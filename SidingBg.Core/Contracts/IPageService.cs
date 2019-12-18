@@ -23,6 +23,7 @@ namespace SidingBg.Core.Contracts
         PageType GetType(string alias);
         ImageViewModel CreateImage(CreateImageViewModel model);
         bool DeleteImage(string id);
+        bool DeactivatePage(string id);
 
         MenuItemsViewModel GetMenuItems();
 

@@ -114,6 +114,15 @@ export default class CreateGallery extends React.Component {
 
             })
     }
+    deletePage(){
+        fetch(api+"templates/DeactivatePage?id="+this.state.id,{
+            method:'POST',
+            headers:{"Content-Type":"application/json"}
+        }).then().then(()=>{
+            this.props.history.push("/cms/index");
+        })
+    }
+
 
     handleSubmit(event) {
         event.preventDefault();
@@ -221,6 +230,12 @@ export default class CreateGallery extends React.Component {
                                 >
                                     Save
                                 </Button>
+                                <Button 
+                                color="danger"
+                                style={{ float: "right" }}
+                                onClick={()=>this.deletePage()}>
+                                    Delete Page
+                                 </Button>
                             </Container>
 
                         </form>

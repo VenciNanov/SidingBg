@@ -55,6 +55,19 @@ namespace SidingBg.Api.Controllers
         }
 
         [HttpPost]
+        [Route("DeactivatePage")]
+        public IActionResult DeactivatePage(string id)
+        {
+            var res = _pageService.DeactivatePage(id);
+            if (!res)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
         [Route("DeleteTab")]
         public IActionResult DeleteTab(string id)
         {

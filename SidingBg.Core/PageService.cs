@@ -120,7 +120,7 @@ namespace SidingBg.Core
 
         public CMSIndexViewModel GetAll()
         {
-            var pages = _context.Pages.Where(x => x.Alias != "Index" && x.Type != 0).Select(p => new PageListViewModel()
+            var pages = _context.Pages.Where(x => x.Alias != "Index" && x.Type != 0).Where(x=>x.IsActive).Select(p => new PageListViewModel()
             {
                 Controller = p.Controller.Name,
                 Page = p.Name,
@@ -172,12 +172,12 @@ namespace SidingBg.Core
         public AddEditPageViewMode Get(string id)
         {
             var page = _context.Pages.Find(id);
-            if (page == null)
+            if (page == null||page.IsActive==false)
             {
                 page = _context.Pages.FirstOrDefault(x => x.Alias == id);
             }
 
-            if (page == null)
+            if (page == null || page.IsActive == false)
             {
                 return null;
             }
@@ -218,13 +218,13 @@ namespace SidingBg.Core
         public MenuItemsViewModel GetMenuItems()
         {
             var vm = new MenuItemsViewModel();
-            var controllers = _context.Controllers.Where(x=>x.Name.Length>0).ToList();
+            var controllers = _context.Controllers.Where(x=>x.Name.Length>0&&x.Pages.Any(p=>p.IsActive)).ToList();
             foreach (var controller in controllers)
             {
                 var ctrlModel = new ControllerViewModel
                 {
                     Name = controller.Name,
-                    Pages = controller.Pages.Where(p => p.Alias != "Index" && p.Type != 0).Select(p => new PageViewModel
+                    Pages = controller.Pages.Where(p => p.Alias != "Index" && p.Type != 0&&p.IsActive).Select(p => new PageViewModel
                     {
                         Alias = p.Alias,
                         HeaderName = p.Content.Header,
@@ -266,6 +266,21 @@ namespace SidingBg.Core
 
             return model;
 
+        }
+
+        public bool DeactivatePage(string id)
+        {
+            var page = _context.Pages.Find(id);
+            if (page==null)
+            {
+                return false;
+            }
+
+
+            page.IsActive = false;
+            _context.SaveChanges();
+
+            return true;
         }
 
         public AddEditPageViewMode CreatePage(AddEditPageViewMode model)

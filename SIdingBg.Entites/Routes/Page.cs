@@ -10,6 +10,7 @@ namespace SidingBg.Entities.Routes
         public Page()
         {
             Id = Guid.NewGuid().ToString();
+            IsActive = true;
         }
         public string Id { get; set; }
         //searched by
@@ -20,5 +21,6 @@ namespace SidingBg.Entities.Routes
         public string ContentId { get; set; }
         public virtual Content Content { get; set; }
         public PageType Type { get; set; }
+        public bool IsActive { get; set; }
     }
 }
