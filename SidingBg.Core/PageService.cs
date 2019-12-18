@@ -33,7 +33,7 @@ namespace SidingBg.Core
             {
                 Name = vm.Page,
                 Content = content,
-                Type = (PageType) vm.Type
+                Type = (PageType)vm.Type
             };
 
             _context.Pages.AddAsync(page);
@@ -66,15 +66,15 @@ namespace SidingBg.Core
             {
                 var tabEntity = _context.Tabs.Find(tab.Id);
                 tabEntity.Text = tab.Text;
-                if (tab.Images.Length>0)
+                if (tab.Images.Length > 0)
                 {
-                    var image =new Image(tab.Images[0]);
-                    
+                    var image = new Image(tab.Images[0]);
+
                     _context.Images.Add(image);
 
                     tabEntity.Images.Add(image);
                 }
-                
+
             }
 
             _context.SaveChanges();
@@ -84,12 +84,12 @@ namespace SidingBg.Core
 
         public CMSIndexViewModel GetAll()
         {
-            var pages = _context.Pages.Where(x=>x.Alias!="Index").Select(p => new PageListViewModel()
+            var pages = _context.Pages.Where(x => x.Alias != "Index" && x.Type != 0).Select(p => new PageListViewModel()
             {
                 Controller = p.Controller.Name,
                 Page = p.Name,
                 PageId = p.Id,
-                Type=(int)p.Type
+                Type = (int)p.Type
             });
 
             var model = new CMSIndexViewModel
@@ -103,12 +103,12 @@ namespace SidingBg.Core
         public ImageViewModel CreateImage(CreateImageViewModel model)
         {
             var page = _context.Pages.Find(model.PageId);
-            if (page==null)
+            if (page == null)
             {
                 return null;
             }
 
-            var image = new Image(model.Image) {ContentId = page.ContentId};
+            var image = new Image(model.Image) { ContentId = page.ContentId };
             _context.Images.Add(image);
             _context.SaveChanges();
 
@@ -124,7 +124,7 @@ namespace SidingBg.Core
         public bool DeleteImage(string id)
         {
             var image = _context.Images.Find(id);
-            if (image==null)
+            if (image == null)
             {
                 return false;
             }
@@ -136,12 +136,12 @@ namespace SidingBg.Core
         public AddEditPageViewMode Get(string id)
         {
             var page = _context.Pages.Find(id);
-            if (page==null)
+            if (page == null)
             {
                 page = _context.Pages.FirstOrDefault(x => x.Alias == id);
             }
 
-            if (page==null)
+            if (page == null)
             {
                 return null;
             }
@@ -152,18 +152,18 @@ namespace SidingBg.Core
                 PageName = page.Name,
                 Contents = page.Content.TextFields.Select(c => c.Text)
                     .ToArray(),
-                Images = page.Content.Images.Select(i =>new ImageViewModel
-                    {
-                        Id = i.Id,
-                        Base64 = i.Base64
-                    })
+                Images = page.Content.Images.Select(i => new ImageViewModel
+                {
+                    Id = i.Id,
+                    Base64 = i.Base64
+                })
                     .ToArray(),
                 Type = (int)page.Type,
                 ContentId = page.ContentId,
-                Tabs = page.Content.Tabs.Select(tab=>new AddEditTabViewModel
+                Tabs = page.Content.Tabs.Select(tab => new AddEditTabViewModel
                 {
-                    Id=tab.Id,
-                    Images = tab.Images.Select(i=>i.Base64).ToArray(),
+                    Id = tab.Id,
+                    Images = tab.Images.Select(i => i.Base64).ToArray(),
                     Name = tab.Name,
                     Text = tab.Text
                 }).ToArray()
@@ -182,19 +182,19 @@ namespace SidingBg.Core
         public MenuItemsViewModel GetMenuItems()
         {
             var vm = new MenuItemsViewModel();
-            var controllers = _context.Controllers.ToList();
+            var controllers = _context.Controllers.Where(x=>x.Name.Length>0).ToList();
             foreach (var controller in controllers)
             {
                 var ctrlModel = new ControllerViewModel
                 {
                     Name = controller.Name,
-                    Pages = controller.Pages.Select(p => new PageViewModel
-                        {
-                            Alias = p.Alias,
-                            HeaderName = p.Content.Header,
-                            Name = p.Name,
-                            Type = (int) p.Type
-                        })
+                    Pages = controller.Pages.Where(p => p.Alias != "Index" && p.Type != 0).Select(p => new PageViewModel
+                    {
+                        Alias = p.Alias,
+                        HeaderName = p.Content.Header,
+                        Name = p.Name,
+                        Type = (int)p.Type
+                    })
                         .ToList()
                 };
                 vm.Controllers.Add(ctrlModel);
@@ -213,19 +213,19 @@ namespace SidingBg.Core
                 PageName = page.Name,
                 Contents = page.Content.TextFields.Select(c => c.Text)
                     .ToArray(),
-                Images = page.Content.Images.Select(i =>new ImageViewModel
-                    {
-                        Id = i.Id,
-                        Base64 = i.Base64
-                    })
-                    .ToArray(),
-                Tabs = page.Type==(PageType)2? page.Content.Tabs.Select(tab=>new AddEditTabViewModel
+                Images = page.Content.Images.Select(i => new ImageViewModel
                 {
-                    Id=tab.Id,
+                    Id = i.Id,
+                    Base64 = i.Base64
+                })
+                    .ToArray(),
+                Tabs = page.Type == (PageType)2 ? page.Content.Tabs.Select(tab => new AddEditTabViewModel
+                {
+                    Id = tab.Id,
                     Name = tab.Name,
                     Text = tab.Text,
-                    Images = tab.Images.Select(i=>i.Base64).ToArray()
-                }).ToArray():null
+                    Images = tab.Images.Select(i => i.Base64).ToArray()
+                }).ToArray() : null
             };
 
             return model;
@@ -315,11 +315,11 @@ namespace SidingBg.Core
             _context.SaveChanges();
         }
 
-        public bool CreateTab(CreateTabViewModel model)
+        public TabViewModel CreateTab(CreateTabViewModel model)
         {
             var content = _context.Contents.Find(model.ContentId);
             if (content == null)
-                return false;
+                return null; 
 
             var tab = new Tab
             {
@@ -330,7 +330,12 @@ namespace SidingBg.Core
             _context.Tabs.Add(tab);
             _context.SaveChanges();
 
-            return true;
+            return new TabViewModel
+            {
+                Id=tab.Name,
+                Text = tab.Text,
+                Name = tab.Name
+            };
         }
 
         public List<TabViewModel> GetTabsByContentId(string contentId)
@@ -342,7 +347,7 @@ namespace SidingBg.Core
             {
                 Id = t.Id,
                 Name = t.Name,
-                Images = t.Images.Select(i=>i.Base64).ToArray(),
+                Images = t.Images.Select(i => i.Base64).ToArray(),
                 Text = t.Text
             }).ToList();
             return model;

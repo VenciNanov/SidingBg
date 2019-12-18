@@ -13,7 +13,7 @@ import {
     Col,
     FormGroup, CardDeck, CardImg, CardTitle, CardSubtitle, CardText,
     FormText,
-    
+
     Input,
     NavItem,
     NavLink,
@@ -86,7 +86,10 @@ export default class CreateTabs extends React.Component {
             })
         }).then((res) => res.json()).then((data => {
 
-            this.setState({ tabs: data })
+            let newArray = this.state.tabs.concat({ id: data.id, name: data.name, text: data.text })
+            this.setState({ tabs: newArray })
+
+            // this.setState({ tabs: data })
             this.setState({ setModal: false });
         }))
     }
@@ -107,65 +110,66 @@ export default class CreateTabs extends React.Component {
                                 <i className="now-ui-icons  ui-1_simple-add"> </i>&nbsp;
                              Add new tab
               </Button>
-              {this.state.tabs.length>0?
-                            <Col className="ml-auto mr-auto" md="10" xl="12">                                
-                                <form onSubmit={this.handleSubmit}>
-                                    <Card>
-                                        <CardHeader>
-                                            <Nav className="justify-content-center" role="tablist" tabs>
+                            {this.state.tabs.length > 0 ?
+                                <Col className="ml-auto mr-auto" md="10" xl="12">
+                                    <form onSubmit={this.handleSubmit}>
+                                        <Card>
+                                            <CardHeader>
+                                                <Nav className="justify-content-center" role="tablist" tabs>
 
-                                                {
-                                                    this.state.tabs.map((tab, i) => {
-                                                        return <NavItem key={i}><NavLink
-                                                            className={setIconPills == (i + 1) ? "active" : ""}
-                                                            href="#pablo"
-                                                            onClick={e => {
-                                                                e.preventDefault();
-                                                                this.setState({ setIconPills: (i + 1) });
-                                                            }}
-                                                        >
-                                                            {tab.name}
-                                                        </NavLink></NavItem>
-                                                    })
-                                                }
-                                            </Nav>
-                                        </CardHeader>
-                                        <CardBody>
-                                            <TabContent
-                                                className="text-center"
-                                                activeTab={"iconPills" + setIconPills}
-                                            >
-                                                {this.state.tabs.map((tab, i) => {
-                                                    return <TabPane tabId={"iconPills" + (i + 1)}>
-                                                        Text content
-                                                        <p>                                                            
+                                                    {
+                                                        this.state.tabs.map((tab, i) => {
+                                                            return <NavItem key={i}><NavLink
+                                                                className={setIconPills == (i + 1) ? "active" : ""}
+                                                                href="#pablo"
+                                                                onClick={e => {
+                                                                    e.preventDefault();
+                                                                    this.setState({ setIconPills: (i + 1) });
+                                                                }}
+                                                            >
+                                                                {tab.name}
+                                                            </NavLink></NavItem>
+                                                        })
+                                                    }
+                                                </Nav>
+                                            </CardHeader>
+                                            <CardBody>
+                                                <TabContent
+                                                    className="text-center"
+                                                    activeTab={"iconPills" + setIconPills}
+                                                >
+                                                    {this.state.tabs.map((tab, i) => {
+                                                        return <TabPane tabId={"iconPills" + (i + 1)}>
+                                                            Text content
+                                                        <p>
+                                                                <Input
+                                                                    onChange={(e) => tab.text = e.target.value || ""}
+                                                                    defaultValue={tab.text}
+                                                                    type="textarea"></Input>
+                                                            </p>
+                                                            <Row>
+                                                                <Col xl="3">
+                                                                    <img src={tab.images?tab.images[0]:""} /></Col>
+                                                            </Row>
+                                                            <Col className="">
+                                                                Upload image (not required)
                                                             <Input
-                                                                onChange={(e) => tab.text = e.target.value || ""}
-                                                                defaultValue={tab.text}
-                                                                type="textarea"></Input>
-                                                        </p>
-                                                        <Row>
-                                                            <Col xl="3">
-                                                            <img src={tab.images[0]}/></Col>
-                                                        </Row>
-                                                        <Col className="">                                                        
-                                                        Upload image (not required)
-                                                            <Input
-                                                                onChange={(e) =>this.getBase64(e.target.files[0], (result) => {
-                                                                    tab.images[0] = result })}
-                                                                type="file"></Input>
-                                                        </Col>
-                                                    </TabPane>
-                                                })}
-                                            </TabContent>
-                                        </CardBody>
-                                        <Button color="info" type="submit">
-                                            Save tabs
+                                                                    onChange={(e) => this.getBase64(e.target.files[0], (result) => {
+                                                                        tab.images[0] = result
+                                                                    })}
+                                                                    type="file"></Input>
+                                                            </Col>
+                                                        </TabPane>
+                                                    })}
+                                                </TabContent>
+                                            </CardBody>
+                                            <Button color="info" type="submit">
+                                                Save tabs
                   </Button>
-                                    </Card>
-                                </form>
-                            </Col>
-                             :""}
+                                        </Card>
+                                    </form>
+                                </Col>
+                                : ""}
                         </Row>
                     </Container>
                     <Modal isOpen={this.state.setModal} toggle={() => this.setState({ setModal: false })}>
