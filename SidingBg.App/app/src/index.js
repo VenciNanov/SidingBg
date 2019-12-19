@@ -10,7 +10,8 @@ import "assets/demo/nucleo-icons-page-styles.css";
 // pages for this kit
 import Index from "views/Index.js";
 import NucleoIcons from "views/NucleoIcons.js";
-import LoginPage from "views/examples/LoginPage.js";
+import LoginPage from "views/cms/Login.js";
+import LoginPage1 from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import RegisterPage from "views/examples/RegisterPage";
@@ -42,7 +43,7 @@ ReactDOM.render(
           path="/profile-page"
           render={props => <ProfilePage {...props} />}
         />
-         <Route
+        <Route
           path="/register-page"
           render={props => <RegisterPage {...props} />}
         />
@@ -62,6 +63,10 @@ ReactDOM.render(
           path="/cms/index"
           render={props => <CMSIndex {...props} />}
         />
+        <Route
+          path="/cms/login"
+          render={props => <LoginPage {...props}></LoginPage>}
+        ></Route>
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Redirect to="/index" />
         <Redirect from="/" to="/index" />

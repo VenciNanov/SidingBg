@@ -27,13 +27,13 @@ namespace SidingBg.Api.Auth
                  new Claim(JwtRegisteredClaimNames.Sub, userName),
                  new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
                  new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-                 identity.FindFirst(StaticVariables.JWT_ID)
+               
              };
 
-            foreach (var item in identity.FindAll(ClaimTypes.Role))
-            {
-                claims.Add(item);
-            }
+            //foreach (var item in identity.FindAll(ClaimTypes.Role))
+            //{
+            //    claims.Add(item);
+            //}
 
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(

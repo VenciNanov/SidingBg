@@ -21,7 +21,7 @@ namespace SidingBg.Api.Helpers
         {
             var response = new ResponseTokenViewModel
             {
-                Id = identity.Claims.Single(c => c.Type == "id").Value,
+                Id = "adminId",
                 Token = await jwtFactory.GenerateEncodedToken(userName, identity),
                 Expires = (int)jwtOptions.ValidFor.TotalSeconds
             };

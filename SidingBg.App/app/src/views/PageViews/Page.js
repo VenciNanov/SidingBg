@@ -30,8 +30,7 @@ export default class Page extends React.Component {
         super(props);
         this.state = {
             alias: '',
-            type: '',
-            
+            type: '',            
         }
     }
     componentDidMount(){
