@@ -35,6 +35,7 @@ export default class CMSIndex extends React.Component {
         this.state = {
             pages: []
         }
+        console.log(localStorage);
     }
 
     componentDidMount() {

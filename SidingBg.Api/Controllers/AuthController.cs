@@ -18,58 +18,13 @@ namespace SidingBg.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private IUserService _userService;
         private UserManager<User> _userManager;
 
-        public AuthController(IUserService userService,UserManager<User> userManager)
+        public AuthController(UserManager<User> userManager)
         {
-            _userService = userService;
             _userManager = userManager;
         }
 
-        [AllowAnonymous]
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]LoginViewModel model)
-        {
-            var user = _userService.Authenticate(model.Username, model.Password);
-
-            if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
-
-            return Ok(user);
-        }
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var users = _userService.GetAll();
-            return Ok(users);
-        }
-
-        [AllowAnonymous]
-        [Route("/register")]
-        [HttpPost]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
-        {
-            
-
-            if (ModelState.IsValid)
-            {
-                var user = new User()
-                {
-                    Email = model.Email,
-                    UserName = model.Email,
-                };
-
-                var result = await this._userManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
-                {
-                    return Ok();
-                }
-            }
-
-            return BadRequest("Error");
-        }
+        
     }
 }

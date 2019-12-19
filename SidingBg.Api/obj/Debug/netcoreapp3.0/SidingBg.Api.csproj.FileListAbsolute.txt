@@ -127,7 +127,6 @@ C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\ru\Mic
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Softuni React.js project\SidingBg\SidingBg.Api\obj\Debug\netcoreapp3.0\SidingBg.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\FluentValidation.dll
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\Microsoft.EntityFrameworkCore.SqlServer.Design.dll
@@ -135,3 +134,10 @@ C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\Siding
 C:\Softuni React.js project\SidingBg\SidingBg.Api\bin\Debug\netcoreapp3.0\SidingBg.Data.pdb
 C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\SidingBg.Core.dll
 C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\SidingBg.Core.pdb
+C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Api\bin\Debug\netcoreapp3.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Api\obj\Debug\netcoreapp3.0\SidingBg.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Softuni React.js project\SidingBG\SidingBg.Api\obj\Debug\netcoreapp3.0\SidingBg.Api.MvcApplicationPartsAssemblyInfo.cache

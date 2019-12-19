@@ -106,7 +106,7 @@ export default class BasicTemplate extends React.Component {
               <Nav navbar>
                 <NavItem>
                   <NavLink to="/index" tag={Link}>
-                    Начало
+                    Home
                   </NavLink>
                 </NavItem>
                 {controllers.map((controller, i) => {

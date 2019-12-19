@@ -106,6 +106,14 @@
               "target": "Package",
               "version": "[12.0.2, )"
             },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUi": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[5.5.0, )"
@@ -192,6 +200,10 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[5.5.0, )"
             }
           },
           "imports": [
@@ -413,6 +425,9 @@
         "frameworks": {
           "netstandard2.1": {
             "projectReferences": {
+              "C:\\Softuni React.js project\\SidingBG\\SidingBg.Core\\SidingBg.Core.csproj": {
+                "projectPath": "C:\\Softuni React.js project\\SidingBG\\SidingBg.Core\\SidingBg.Core.csproj"
+              },
               "C:\\Softuni React.js project\\SidingBG\\SIdingBg.Entites\\SidingBg.Entities.csproj": {
                 "projectPath": "C:\\Softuni React.js project\\SidingBG\\SIdingBg.Entites\\SidingBg.Entities.csproj"
               },
@@ -492,6 +507,10 @@
       "frameworks": {
         "netstandard2.1": {
           "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
             "System.ComponentModel.Annotations": {
               "target": "Package",
               "version": "[4.3.0, )"

@@ -8,6 +8,7 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SidingBg.Core\SidingBg.Core.csproj" />
     <ProjectReference Include="..\SIdingBg.Entites\SidingBg.Entities.csproj" />
     <ProjectReference Include="..\SidingBg.ViewModels\SidingBg.ViewModels.csproj" />
   </ItemGroup>

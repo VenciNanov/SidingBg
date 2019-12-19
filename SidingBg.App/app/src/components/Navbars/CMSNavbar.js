@@ -84,19 +84,14 @@ function CMSNavbar() {
             <Nav navbar>
               <NavItem>
                 <NavLink to="/cms/Index" tag={Link}>
-                  Начало Админ Панел
+                  Index
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="/cms/create-route" tag={Link}>
-                  Създай страница
+                  Create page
                 </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/" tag={Link}>
-                  Начало Админ Панел
-                </NavLink>
-              </NavItem>
+              </NavItem>              
             </Nav>
           </Collapse>
         </Container>

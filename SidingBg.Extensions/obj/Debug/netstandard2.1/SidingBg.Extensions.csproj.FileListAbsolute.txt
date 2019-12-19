@@ -11,3 +11,7 @@ C:\Softuni React.js project\SidingBg\SidingBg.Extensions\obj\Debug\netstandard2.
 C:\Softuni React.js project\SidingBg\SidingBg.Extensions\obj\Debug\netstandard2.1\SidingBg.Extensions.pdb
 C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.ViewModels.dll
 C:\Softuni React.js project\SidingBg\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.ViewModels.pdb
+C:\Softuni React.js project\SidingBG\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Core.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Data.dll
+C:\Softuni React.js project\SidingBG\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Core.pdb
+C:\Softuni React.js project\SidingBG\SidingBg.Extensions\bin\Debug\netstandard2.1\SidingBg.Data.pdb

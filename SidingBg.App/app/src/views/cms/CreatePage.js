@@ -79,11 +79,11 @@ export default class CreatePage extends React.Component {
             })
     }
 
-    deletePage(){
-        fetch(api+"templates/DeactivatePage?id="+this.state.id,{
-            method:'POST',
-            headers:{"Content-Type":"application/json"}
-        }).then().then(()=>{
+    deletePage() {
+        fetch(api + "templates/DeactivatePage?id=" + this.state.id, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" }
+        }).then().then(() => {
             this.props.history.push("/cms/index");
         })
     }
@@ -226,12 +226,13 @@ export default class CreatePage extends React.Component {
                                 >
                                     Save
                                 </Button>
-                                <Button 
-                                color="danger"
-                                style={{ float: "right" }}
-                                onClick={()=>this.deletePage()}>
+                                {this.state.type != 0 ? <Button
+                                    color="danger"
+                                    style={{ float: "right" }}
+                                    onClick={() => this.deletePage()}>
                                     Delete Page
-                                 </Button>
+                                 </Button> : null}
+
                             </Container>
 
                         </form>
