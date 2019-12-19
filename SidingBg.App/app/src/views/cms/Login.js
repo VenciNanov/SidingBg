@@ -57,6 +57,7 @@ export default class Login extends React.Component {
             localStorage.setItem("isAuth", true);
             localStorage.setItem('token', data.jwt.token);
             localStorage.setItem('user', data.user);
+            this.props.history.push('/cms/index')
             console.log(localStorage)
         }).catch((error) => {
             console.log(error);

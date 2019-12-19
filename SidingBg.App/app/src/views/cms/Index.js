@@ -25,6 +25,7 @@ import NavBar from "components/Navbars/CMSNavbar";
 import LandingPageHeader from "components/Headers/LandingPageHeader";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
 import DefaultFooter from "components/Footers/DefaultFooter";
+import { Redirect } from "react-router";
 
 const API = "https://localhost:44353/api/Templates/GetAll"
 
@@ -34,7 +35,7 @@ export default class CMSIndex extends React.Component {
         this.state = {
             pages: []
         }
-        console.log(localStorage);
+        
     }
 
     componentDidMount() {

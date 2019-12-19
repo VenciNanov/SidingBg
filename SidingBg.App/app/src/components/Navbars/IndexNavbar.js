@@ -15,6 +15,7 @@ import {
   Container,
   UncontrolledTooltip
 } from "reactstrap";
+import AuthService from "services/AuthService.js";
 
 
 const api = "https://localhost:44353/api/Pages/"
