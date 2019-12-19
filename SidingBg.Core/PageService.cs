@@ -53,7 +53,15 @@ namespace SidingBg.Core
                 controller.Pages.Add(page);
             }
 
-            page.Alias = $"{page.Name}";
+            var alias = $"{page.Name}";
+
+            if (_context.Pages.Any(x=>x.Alias==alias))
+            {
+                var rnd = new Random();
+                alias = alias + rnd.Next(1000, 1999).ToString();
+            }
+
+            page.Alias = alias;
 
             _context.SaveChanges();
 
