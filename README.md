@@ -13,8 +13,8 @@ Which operates with only one user acting as the administrator of the application
   
 # Functionalities
   # CMS
-    Login //TODO
-    Logout //TOOD
+    Login 
+    Logout
     All pages
     Create page
       -types
