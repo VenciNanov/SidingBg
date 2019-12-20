@@ -146,7 +146,7 @@ export default class CreateGallery extends React.Component {
                 "contents": this.state.texts,
                 "images": this.state.filesToUpload
             })
-        });
+        }).then().then(()=>{this.props.history.push("/cms/index");});
         // this.props.history.push('/');
     };
 

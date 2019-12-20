@@ -50,7 +50,7 @@ ReactDOM.render(
         />
         <PrivateRoute path='/cms/create-route' component={CreateRoutePage} />
         <PrivateRoute path='/cms/create-page/:id' component={CreatePage} />
-        <PrivateRoute path='path="/cms/create-gallery/:id"' component={CreateGallery} />
+        <PrivateRoute path='/cms/create-gallery/:id' component={CreateGallery} />
         <PrivateRoute path='/cms/index' component={CMSIndex} />
         <PrivateRoute path='/cms/logout' component={Logout} />
         <Route

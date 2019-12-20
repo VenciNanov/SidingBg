@@ -108,7 +108,7 @@ export default class CreatePage extends React.Component {
                 "images": this.state.files
             })
         }).then(()=>{}).then((data=>{
-
+            this.props.history.push("/cms/index");
         }))
         // this.props.history.push('/');
     };
