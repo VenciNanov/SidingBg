@@ -65,7 +65,10 @@ export default class CreateTabs extends React.Component {
 
         fetch(api + 'Templates/SaveTabs', {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem('token')
+            },
             body: JSON.stringify({
                 "contentId": this.state.contentId,
                 "tabs": this.state.tabs
@@ -79,14 +82,17 @@ export default class CreateTabs extends React.Component {
 
         fetch(api + "templates/createTab", {
             method: 'POST',
-            headers: { 'Content-type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem('token')
+            },
             body: JSON.stringify({
                 'contentId': this.state.contentId,
                 'tabName': this.state.createTabName,
             })
         }).then((res) => res.json()).then((data => {
 
-            let newArray = this.state.tabs.concat({ id: data.id, name: data.name, text: data.text })
+            let newArray = this.state.tabs.concat({ id: data.id, name: data.name, text: data.text,images:[] })
             this.setState({ tabs: newArray })
 
             // this.setState({ tabs: data })
@@ -97,7 +103,11 @@ export default class CreateTabs extends React.Component {
     deleteTab(id) {
         fetch(api + "templates/DeleteTab?id=" + id, {
             method: "POST",
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem('token')
+            },
+
         }).then(() => {
             var newArray = this.state.tabs.filter((value, index, arr) => {
                 return value.id !== id
@@ -107,14 +117,14 @@ export default class CreateTabs extends React.Component {
             });
         })
     }
-    deleteTabImage(tabId,i) {
+    deleteTabImage(tabId, i) {
         fetch(api + "templates/DeleteImageFromTab?tabId=" + tabId, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
         }).then(() => {
             var newArray = this.state.tabs.filter((value, index, arr) => {
-                if(index===i){
-                    value.images=[]
+                if (index === i) {
+                    value.images = []
                 }
                 return value
             });
@@ -186,7 +196,7 @@ export default class CreateTabs extends React.Component {
                                                                     type="textarea"></Input>
                                                             </p>
                                                             <Row>
-                                                                {tab.images.length > 0 ? <div> <Col xl="3"><img src={tab.images ? tab.images[0] : ""} /></Col> <Col xl="3"><Button color="danger" onClick={() => this.deleteTabImage(tab.id,i)}>Delete image</Button></Col></div> : null}
+                                                                {tab.images.length > 0 ? <div> <Col xl="3"><img src={tab.images ? tab.images[0] : ""} /></Col> <Col xl="3"><Button color="danger" onClick={() => this.deleteTabImage(tab.id, i)}>Delete image</Button></Col></div> : null}
 
                                                                 <Col xl="3">
 

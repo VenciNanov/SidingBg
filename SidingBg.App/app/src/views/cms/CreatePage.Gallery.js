@@ -62,7 +62,10 @@ export default class CreateGallery extends React.Component {
     deleteImage(id) {
         fetch(api + "templates/DeleteImage?id="+id, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },            
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem('token')
+            },
         }).then(() => {
             var newArray = this.state.files.filter((value, index, arr) => {
                 return value.id !== id
@@ -117,7 +120,10 @@ export default class CreateGallery extends React.Component {
     deletePage(){
         fetch(api+"templates/DeactivatePage?id="+this.state.id,{
             method:'POST',
-            headers:{"Content-Type":"application/json"}
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem('token')
+            },
         }).then().then(()=>{
             this.props.history.push("/cms/index");
         })
@@ -131,7 +137,10 @@ export default class CreateGallery extends React.Component {
 
         fetch(api + 'templates/addEditPage', {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem('token')
+            },
             body: JSON.stringify({
                 "pageId": this.state.id,
                 "contents": this.state.texts,

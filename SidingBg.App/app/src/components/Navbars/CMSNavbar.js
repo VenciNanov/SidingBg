@@ -1,5 +1,5 @@
 import React from "react";
-import { Link,Route,Redirect } from "react-router-dom";
+import { Link, Route, Redirect } from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
@@ -14,7 +14,7 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
-  
+
 } from "reactstrap";
 
 
@@ -53,13 +53,13 @@ function CMSNavbar() {
       ) : null}
       <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
         <Container>
-          
+
           <div className="navbar-translate">
             <NavbarBrand
-              href="/cms/index"             
+              href="/cms/index"
               id="navbar-brand"
             >
-            SidingBg
+              SidingBg
             </NavbarBrand>
             <UncontrolledTooltip target="#navbar-brand">
               Designed by Invision. Coded by Creative Tim
@@ -83,21 +83,32 @@ function CMSNavbar() {
             isOpen={collapseOpen}
             navbar
           >
-            <Nav navbar>
-              <NavItem>
-                <NavLink to="/cms/Index" tag={Link}>
-                  Index
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/cms/create-route" tag={Link}>
-                  Create page
-                </NavLink>
-              </NavItem>              
-            </Nav>
+            {localStorage.getItem('isAuth') === "true" ?
+              <Nav navbar>
+
+                <NavItem>
+                  <NavLink to="/cms/Index" tag={Link}>
+                    Index
+              </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/cms/create-route" tag={Link}>
+                    Create page
+              </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink to="/cms/Logout" tag={Link}>
+                    Logout
+              </NavLink>
+                </NavItem>
+              
+              </Nav>
+          : null}
+
+
           </Collapse>
         </Container>
-      </Navbar>
+    </Navbar>
     </>
   );
 }

@@ -32,7 +32,10 @@ export default class CreateRoutePage extends React.Component {
 
     fetch('https://localhost:44353/api/templates/createroute', {
       method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + localStorage.getItem('token')
+    },
       body: JSON.stringify({
         "controller": event.target.controller.value,
         "page": event.target.page.value,

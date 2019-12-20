@@ -21,6 +21,7 @@ import CreatePage from "views/cms/CreatePage";
 import CMSIndex from "views/cms/Index";
 import Page from "views/PageViews/Page";
 import CreateGallery from "views/cms/CreatePage.Gallery";
+import NotFoundPage from "views/PageViews/404page";
 
 
 ReactDOM.render(
@@ -28,6 +29,7 @@ ReactDOM.render(
     <Switch>
       <Switch>
         <Route path="/index" render={props => <Index {...props} />} />
+        
         <Route path="/page/:alias" render={props => <Page {...props} />} />
 
         <Route
@@ -45,19 +47,21 @@ ReactDOM.render(
         <Route
           path="/register-page"
           render={props => <RegisterPage {...props} />}
-        />        
+        />
         <PrivateRoute path='/cms/create-route' component={CreateRoutePage} />
         <PrivateRoute path='/cms/create-page/:id' component={CreatePage} />
         <PrivateRoute path='path="/cms/create-gallery/:id"' component={CreateGallery} />
         <PrivateRoute path='/cms/index' component={CMSIndex} />
-        <PrivateRoute path='/cms/logout' component={Logout}/>
+        <PrivateRoute path='/cms/logout' component={Logout} />
         <Route
           path="/cms/login"
           render={props => <LoginPage {...props}></LoginPage>}
         ></Route>
-        <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Redirect to="/index" />
         <Redirect from="/" to="/index" />
+        <Redirect from="/cms" to="/cms/index" />
+        <Route path="/*" render={props => <NotFoundPage {...props} />} />
+
       </Switch>
     </Switch>
   </BrowserRouter>,

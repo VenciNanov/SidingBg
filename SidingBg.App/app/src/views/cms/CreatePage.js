@@ -42,7 +42,7 @@ export default class CreatePage extends React.Component {
             files: [],
             pageName: "",
             textsValues: [],
-            contentId: '',
+            contentId: '',            
         };
     }
 
@@ -82,7 +82,10 @@ export default class CreatePage extends React.Component {
     deletePage() {
         fetch(api + "templates/DeactivatePage?id=" + this.state.id, {
             method: 'POST',
-            headers: { "Content-Type": "application/json" }
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem('token')
+            },
         }).then().then(() => {
             this.props.history.push("/cms/index");
         })
@@ -95,13 +98,18 @@ export default class CreatePage extends React.Component {
 
         fetch(api + 'templates/addEditPage', {
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem('token')
+            },
             body: JSON.stringify({
                 "pageId": this.state.id,
                 "contents": this.state.texts,
                 "images": this.state.files
             })
-        });
+        }).then(()=>{}).then((data=>{
+
+        }))
         // this.props.history.push('/');
     };
 
@@ -226,12 +234,14 @@ export default class CreatePage extends React.Component {
                                 >
                                     Save
                                 </Button>
+                                <Row>
                                 {this.state.type != 0 ? <Button
                                     color="danger"
                                     style={{ float: "right" }}
                                     onClick={() => this.deletePage()}>
                                     Delete Page
                                  </Button> : null}
+                                 </Row>
 
                             </Container>
 

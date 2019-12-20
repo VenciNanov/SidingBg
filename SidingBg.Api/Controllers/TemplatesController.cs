@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SidingBg.Core;
@@ -69,6 +70,7 @@ namespace SidingBg.Api.Controllers
 
         [HttpPost]
         [Route("DeleteTab")]
+        [Authorize]
         public IActionResult DeleteTab(string id)
         {
             var res = _pageService.DeleteTab(id);

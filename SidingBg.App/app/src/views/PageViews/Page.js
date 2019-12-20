@@ -10,7 +10,7 @@ import {
     Container,
     Row,
     Col,
-    
+
 } from "reactstrap";
 
 // core components
@@ -21,6 +21,7 @@ import BasicTemplate from "views/PageViews/BasicTemplate";
 import TabsTemplate from "views/PageViews/TabsTemplate";
 import Carousel from "views/index-sections/Carousel";
 import GalleryTemplate from "./GalleryTemplate";
+import NotFoundPage from "./404page";
 
 
 const api = "https://localhost:44353/api/pages/"
@@ -30,10 +31,10 @@ export default class Page extends React.Component {
         super(props);
         this.state = {
             alias: '',
-            type: '',            
+            type: '',
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         console.log("didmount")
         console.log(this.props.match.params.alias)
         this.fetchPageInfo(this.props.match.params.alias)
@@ -45,16 +46,18 @@ export default class Page extends React.Component {
         this.fetchPageInfo(nextProps.match.params.alias)
     }
 
-    fetchPageInfo(alias){
-     return fetch(api + 'GetPageInfo?alias=' + alias, {
+    fetchPageInfo(alias) {
+        return fetch(api + 'GetPageInfo?alias=' + alias, {
             method: 'GET'
         }).then((res) => res.json())
-            .then((data) => {                
-                this.setState({ pageComponent:this.returnPageTemplateComponent(data.type,alias)});               
+            .then((data) => {
+                this.setState({ pageComponent: this.returnPageTemplateComponent(data.type, alias) });
+            }).catch((error) => {
+                this.setState({ pageComponent: <NotFoundPage></NotFoundPage> })
             })
-    } 
+    }
 
-    returnPageTemplateComponent(type,alias) {
+    returnPageTemplateComponent(type, alias) {
         switch (type) {
             case 1:
                 return <BasicTemplate alias={alias}></BasicTemplate>
@@ -75,7 +78,7 @@ export default class Page extends React.Component {
                     <LandingPageHeader />
                     <div className="">
                         <Container>
-                            {this.state.pageComponent||''}
+                            {this.state.pageComponent || ''}
                         </Container>
                     </div>
                     <DefaultFooter />
